@@ -6,6 +6,12 @@ public class SavePointManager : Singleton<SavePointManager>
 {
     public Transform currentSavePoint;
     public Transform player;
+
+    private void Start()
+    {
+        currentSavePoint = transform;
+    }
+
     private void OnEnable()
     {
         EventManager.Instance.AddEvent("Death", OnDeath);
