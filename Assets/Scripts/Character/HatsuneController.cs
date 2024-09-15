@@ -2,11 +2,11 @@
 
 public class HatsuneController : MonoBehaviour
 {
+    public int deathAmount = 0;
     public float rotationSpeed = 100f; // 马尾旋转速度
     public float maxSpeed = 10f;       // 最大速度
     public float directionSmoothTime = 0.5f;  // 方向切换的平滑时间
     public float speedSmoothTime = 0.5f;      // 速度变化的平滑时间
-
     private Rigidbody2D rb;
     private Vector3 currentDirection = Vector3.zero; // 当前的运动方向
     private float currentSpeed = 0f;   // 当前的速度
@@ -118,6 +118,7 @@ public class HatsuneController : MonoBehaviour
     }
      public void OnDeath()
     {
+        GameManager.Instance.deathCount++;
         canMove = false;
         rb.velocity = Vector3.zero;
         currentDirection = Vector3.zero;
