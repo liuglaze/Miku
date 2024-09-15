@@ -12,7 +12,6 @@ public class SavePoint : MonoBehaviour
         {
             //播放动画
             SavePointManager.Instance.currentSavePoint = transform;
-
         }       
     }
 
