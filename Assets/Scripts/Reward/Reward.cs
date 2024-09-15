@@ -32,6 +32,7 @@ public class Reward : MonoBehaviour
     {
         // 取消订阅玩家死亡事件
         EventManager.Instance.RemoveEvent("Death", OnPlayerDied);
+        Debug.Log(1);
         RewardManager.Instance.strawBerryAmount++;
     }
 

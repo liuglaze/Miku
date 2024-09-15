@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     // 获取已收集道具的数量
     public int GetCollectedItems()
     {
+        Debug.Log(RewardManager.Instance.strawBerryAmount);
         return RewardManager.Instance.strawBerryAmount;
     }
 

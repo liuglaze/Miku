@@ -23,7 +23,7 @@ public class SavePoint : MonoBehaviour
         if(!isUsed)
         {
             microPhone.SetActive(true);
-            //EventManager.Instance.TriggerEvent("ReachSavePoint");
+            EventManager.Instance.TriggerEvent("ReachSavePoint");
             Debug.Log(SavePointManager.Instance.currentSavePoint);
             Debug.Log(transform.position);
             SavePointManager.Instance.currentSavePoint = transform.position;
