@@ -7,6 +7,7 @@ public class StartMenu : MonoBehaviour
 {
     public Button startBtn;
     public Button continueBtn;
+    public Button quitBtn;
     private void OnEnable()
     {
         if (startBtn != null)
@@ -17,6 +18,10 @@ public class StartMenu : MonoBehaviour
         if (continueBtn != null)
         {
             continueBtn.onClick.AddListener(OnContinueClicked);
+        }
+        if (quitBtn != null)
+        {
+            quitBtn.onClick.AddListener(OnQuitClicked);
         }
     }
 
@@ -31,17 +36,27 @@ public class StartMenu : MonoBehaviour
         {
             continueBtn.onClick.RemoveListener(OnContinueClicked);
         }
+        if (quitBtn != null)
+        {
+            quitBtn.onClick.RemoveListener(OnQuitClicked);
+        }
     }
 
 
 
     public void OnStartClicked()
     {
+        GameManager.Instance.loadData = false;
         SceneLoader.Instance.LoadGameScene();
     }
 
     public void OnContinueClicked()
     {
-
+        GameManager.Instance.loadData=true;
+        SceneLoader.Instance.LoadGameScene();
+    }
+    public void OnQuitClicked()
+    {
+        Application.Quit();
     }
 }

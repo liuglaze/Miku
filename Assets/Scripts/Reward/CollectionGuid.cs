@@ -10,7 +10,10 @@ public class CollectionGuid : MonoBehaviour
     private void Awake()
     {
         DataManager.Instance.RegisterCollection(this);
-        hasCollect = DataManager.Instance.GetHasCollectedStatus(guid);
+        if(GameManager.Instance.loadData)
+        {
+            hasCollect = DataManager.Instance.GetHasCollectedStatus(guid);
+        }
     }
     private void OnValidate()
     {

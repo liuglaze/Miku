@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBtn: {fileID: 1565424889}
   continueBtn: {fileID: 327493668}
+  quitBtn: {fileID: 0}
 --- !u!1 &51712503
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u7EE7\u7EED\u6E38\u620F"
 --- !u!222 &386625362
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -702,7 +703,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u9000\u51FA\u6E38\u620F"
 --- !u!222 &656356187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -711,6 +712,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656356184}
   m_CullTransparentMesh: 1
+--- !u!1 &1552459058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552459060}
+  - component: {fileID: 1552459059}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1552459059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552459058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b35ac7167006b74780826f745e6b59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathCount: 0
+  completionTime: 0
+  player: {fileID: 0}
+  loadData: 0
+--- !u!4 &1552459060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552459058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1565424885
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +1043,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u65B0\u7684\u6E38\u620F"
 --- !u!222 &1731232771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1132,3 +1181,4 @@ SceneRoots:
   - {fileID: 18851576}
   - {fileID: 525223717}
   - {fileID: 608036006}
+  - {fileID: 1552459060}

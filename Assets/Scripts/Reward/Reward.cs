@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Reward : MonoBehaviour
@@ -13,14 +14,9 @@ public class Reward : MonoBehaviour
     private void Awake()
     {
         collectionGuid = GetComponent<CollectionGuid>();
-
     }
     private void OnEnable()
     {
-        if(collectionGuid.hasCollect)
-        {
-            gameObject.SetActive(false);
-        }
         EventManager.Instance.AddEvent("ReachSavePoint", ReachSavePoint);
         // 订阅玩家死亡事件
         EventManager.Instance.AddEvent("Death", OnPlayerDied);
@@ -31,8 +27,13 @@ public class Reward : MonoBehaviour
         // 取消订阅玩家死亡事件
         EventManager.Instance.RemoveEvent("Death", OnPlayerDied);
     }
+
     private void Start()
     {
+        if (collectionGuid.hasCollect)
+        {
+            gameObject.SetActive(false);
+        }
         // 保存草莓的原始位置
         originalPosition = transform.position;
         rewardIndex = RewardManager.Instance.GetRewardIndex(this);

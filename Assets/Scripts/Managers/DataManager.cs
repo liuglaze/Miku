@@ -82,7 +82,13 @@ public class DataManager : Singleton<DataManager>
         ranksData = LoadRanking();
         collectionData = LoadCollectionData();
     }
-
+    private void Start()
+    {
+        if (GameManager.Instance.loadData)
+        {
+            ApplyData();
+        }
+    }
 
     // 注册 CollectionGuid
     public void RegisterCollection(CollectionGuid collection)
@@ -180,6 +186,7 @@ public class DataManager : Singleton<DataManager>
         GameManager.Instance.completionTime = currentContinueData.completeTime;
         GameManager.Instance.deathCount = currentContinueData.deathCount;
         RewardManager.Instance.strawBerryAmount = currentContinueData.collectionAmount;
+        SavePointManager.Instance.OnDeath();
     }
     // 删除保存的数据
     public void DeleteSaveData()

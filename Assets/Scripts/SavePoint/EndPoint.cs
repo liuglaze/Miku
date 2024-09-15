@@ -9,6 +9,7 @@ public class EndPoint : MonoBehaviour
 
     public bool hasTriggered = false;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasTriggered && collision.CompareTag("Player"))
