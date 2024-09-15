@@ -10,19 +10,20 @@ public class SavePoint : MonoBehaviour
 
     private void Awake()
     {
-        microPhone = transform.GetChild(0).gameObject;
+        if(transform.childCount > 0)
+            microPhone = transform.GetChild(0)?.gameObject;
     }
 
-    private void Start()
-    {
-        microPhone.SetActive(false);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(microPhone)
+        {
+            microPhone.SetActive(isUsed);
+        }
+
         if(!isUsed)
         {
-            microPhone.SetActive(true);
             //EventManager.Instance.TriggerEvent("ReachSavePoint");
             Debug.Log(SavePointManager.Instance.currentSavePoint);
             Debug.Log(transform.position);
