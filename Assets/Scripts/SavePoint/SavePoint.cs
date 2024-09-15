@@ -12,7 +12,7 @@ public class SavePoint : MonoBehaviour
         if(!isUsed)
         {
             //播放动画
-            if(reward.isFollowing)
+            if(reward!=null&&reward.isFollowing)
             {
                 Destroy(reward.gameObject);
             }

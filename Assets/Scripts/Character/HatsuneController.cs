@@ -82,7 +82,10 @@ public class HatsuneController : MonoBehaviour
         {
             targetSpeed = 0f;
         }
-
+        if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1))
+        {
+            AudioManager.Instance.PlayRandomSound();
+        }
         // 使用 SmoothDamp 平滑过渡到目标方向
         if(targetSpeed != 0f)
         {
