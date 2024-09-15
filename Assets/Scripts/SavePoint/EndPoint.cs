@@ -19,6 +19,8 @@ public class EndPoint : MonoBehaviour
             //animator.SetTrigger("PlayEndAnimation");
             Debug.Log(1);
             EventManager.Instance.TriggerEvent("ReachSavePoint", ShowScoreBoard);
+            ShowScoreBoard();
+            //EventManager.Instance.TriggerEvent("GameEnd");
         }
     }
 
