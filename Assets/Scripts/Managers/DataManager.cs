@@ -81,6 +81,7 @@ public class DataManager : Singleton<DataManager>
         currentContinueData = LoadGame();
         ranksData = LoadRanking();
         collectionData = LoadCollectionData();
+        DontDestroyOnLoad(this);
     }
     private void Start()
     {
@@ -160,10 +161,20 @@ public class DataManager : Singleton<DataManager>
         return null; // 如果文件不存在，返回 null
     }
 
-    // 保存排行榜数据
-    public void SaveRanking(List<RankingListData> rankingListData)
+    // 添加一个新的排名并保存
+    public void AddRank(RankingListData newRank)
     {
-        RankingListWrapper wrapper = new RankingListWrapper(rankingListData);
+        // 添加新的通关数据到排行榜
+        ranksData.Add(newRank);
+
+        // 保存更新后的排行榜
+        SaveRanking();
+    }
+
+    // 保存排行榜数据
+    public void SaveRanking()
+    {
+        RankingListWrapper wrapper = new RankingListWrapper(ranksData);
         string json = JsonUtility.ToJson(wrapper);
         File.WriteAllText(rankingFilePath, json);
     }
@@ -177,7 +188,7 @@ public class DataManager : Singleton<DataManager>
             RankingListWrapper wrapper = JsonUtility.FromJson<RankingListWrapper>(json);
             return wrapper.rankingData;
         }
-        return null;
+        return new List<RankingListData>(); // 如果文件不存在，返回空列表
     }
 
     public void ApplyData()

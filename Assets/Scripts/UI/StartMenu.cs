@@ -8,6 +8,7 @@ public class StartMenu : MonoBehaviour
     public Button startBtn;
     public Button continueBtn;
     public Button quitBtn;
+    public Button rankBtn;
     private void OnEnable()
     {
         if (startBtn != null)
