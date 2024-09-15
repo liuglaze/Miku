@@ -27,6 +27,7 @@ public class SavePoint : MonoBehaviour
             Debug.Log(SavePointManager.Instance.currentSavePoint);
             Debug.Log(transform.position);
             SavePointManager.Instance.currentSavePoint = transform.position;
+            isUsed = true;
         }       
     }
 
