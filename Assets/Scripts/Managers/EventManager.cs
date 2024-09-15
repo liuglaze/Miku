@@ -52,6 +52,46 @@ public class EventManager : Singleton<EventManager>
             Debug.Log(eventName + "不存在 ");
         }
     }
+    public void TriggerEvent(string eventName, Action onComplete = null)
+    {
+        if (events.ContainsKey(eventName))
+        {
+            // 获取所有订阅的委托
+            var actions = events[eventName];
+            Delegate[] actionList = actions.GetInvocationList();  // GetInvocationList 返回 Delegate[]
+
+            if (actionList != null && actionList.Length > 0)
+            {
+                Debug.Log($"Triggering event {eventName} with {actionList.Length} listeners.");
+                // 使用协程执行这些委托
+                GameManager.Instance.StartCoroutine(TriggerEventCoroutine(actionList, onComplete));
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"{eventName} does not exist");
+        }
+    }
+
+
+    private System.Collections.IEnumerator TriggerEventCoroutine(Delegate[] actions, Action onComplete)
+    {
+        foreach (var action in actions)
+        {
+            // 检查是否是 Action 类型并执行
+            if (action is Action validAction)
+            {
+                Debug.Log("Executing action...");
+                validAction.Invoke();
+            }
+            yield return null; // 等待一帧再执行下一个
+        }
+
+        // 当所有事件执行完毕时，调用回调
+        Debug.Log("All actions executed. Now calling onComplete...");
+        onComplete?.Invoke();
+    }
+
     #endregion
     #region Action<T>
 

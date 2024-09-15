@@ -7,18 +7,18 @@ public class EndPoint : MonoBehaviour
     public Animator animator; // 终点动画的Animator
     public ScoreBoard scoreBoardUI; // 计分板UI的引用
 
-    private bool hasTriggered = false;
+    public bool hasTriggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasTriggered && collision.CompareTag("Player"))
         {
-            EventManager.Instance.TriggerEvent("ReachSavePoint");
             hasTriggered = true; // 防止重复触发
             GameManager.Instance.CompleteLevel();
             // 播放通关动画
             //animator.SetTrigger("PlayEndAnimation");
-            ShowScoreBoard();
+            Debug.Log(1);
+            EventManager.Instance.TriggerEvent("ReachSavePoint", ShowScoreBoard);
         }
     }
 
