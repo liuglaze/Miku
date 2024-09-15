@@ -2,8 +2,6 @@
 
 public class HatsuneController : MonoBehaviour
 {
-    public Transform leftHair;  // 左马尾
-    public Transform rightHair; // 右马尾
     public float rotationSpeed = 100f; // 马尾旋转速度
     public float maxSpeed = 10f;       // 最大速度
     public float directionSmoothTime = 0.5f;  // 方向切换的平滑时间
@@ -21,6 +19,11 @@ public class HatsuneController : MonoBehaviour
     private Vector3 directionRefVelocity = Vector3.zero;  // 用于 SmoothDamp 的方向参考速度
     private Vector3 directionRefSepcial = Vector3.zero; //用于为0的时候
 
+    //头发动画机
+    public Animator leftHair;
+    public Animator rightHair;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,7 +33,8 @@ public class HatsuneController : MonoBehaviour
     {
         bool leftMouse = Input.GetMouseButton(0);  // 检测鼠标左键
         bool rightMouse = Input.GetMouseButton(1); // 检测鼠标右键
-
+        leftHair.SetBool("IsPress", leftMouse);
+        rightHair.SetBool("IsPress", rightMouse);
         // 计算目标方向
         if (leftMouse && rightMouse)
         {
@@ -102,23 +106,10 @@ public class HatsuneController : MonoBehaviour
         rb.velocity = velocity;
       
 
-        // 旋转马尾
-        //if (leftMouse)
-        //{
-        //    RotateHair(leftHair, -rotationSpeed);  // 左马尾旋转
-        //}
 
-        //if (rightMouse)
-        //{
-        //    RotateHair(rightHair, rotationSpeed);  // 右马尾旋转
-        //}
     }
 
-    // 控制马尾旋转
-    void RotateHair(Transform hair, float speed)
-    {
-        hair.Rotate(Vector3.forward * speed * Time.deltaTime);
-    }
+
 }
 
 
