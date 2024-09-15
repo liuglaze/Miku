@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Reward : MonoBehaviour
 {
@@ -7,12 +7,25 @@ public class Reward : MonoBehaviour
     public float followDistance = 2.0f; // 草莓与跟随目标之间的最小距离
     private Vector3 originalPosition; // 草莓的原始位置
     public bool isFollowing = false; // 是否正在跟随
+    private int rewardIndex; // 每个草莓的索引
+    private int totalRewards; // 当前跟随的草莓总数
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddEvent("ReachSavePoint", ReachSavePoint);
+    }
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveEvent("ReachSavePoint", ReachSavePoint);
+    }
     private void Start()
     {
         // 保存草莓的原始位置
         originalPosition = transform.position;
         // 订阅玩家死亡事件
         EventManager.Instance.AddEvent("Death", OnPlayerDied);
+        rewardIndex = RewardManager.Instance.GetRewardIndex(this);
+        totalRewards = RewardManager.Instance.GetTotalRewards();
     }
 
     private void OnDestroy()
@@ -27,30 +40,40 @@ public class Reward : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // 设定跟随目标
-            followTarget = collision.transform.Find("FollowTarget");
+            followTarget = collision.transform;
             isFollowing = true;
+            totalRewards = RewardManager.Instance.GetTotalRewards(); // 更新总数
             // 启动跟随协程
             StartCoroutine(FollowTarget());
         }
     }
-
+    public void ReachSavePoint()
+    {
+        if(isFollowing)
+        {
+            Destroy(gameObject);
+        }
+    }
     private IEnumerator FollowTarget()
     {
         while (isFollowing)
         {
             if (followTarget != null)
             {
-                // 计算草莓与跟随目标之间的距离
-                float distance = Vector3.Distance(transform.position, followTarget.position);
+                // 计算草莓与跟随目标的圆周排列位置
+                float angleStep = 360f / totalRewards; // 每个草莓的角度间隔
+                float angle = rewardIndex * angleStep; // 当前草莓的角度
+                // 将角度转换为弧度
+                float radian = angle * Mathf.Deg2Rad;
 
-                if (distance != followDistance)
-                {
-                    // 计算目标位置，保持指定的跟随距离
-                    Vector3 direction = (transform.position - followTarget.position).normalized;
-                    Vector3 targetPosition = followTarget.position + direction * followDistance;
-                    // 将草莓平滑移动到目标位置
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f是平滑因子，可以调整
-                }
+                // 计算目标位置，基于角度的极坐标转换为笛卡尔坐标
+                Vector3 targetPosition = followTarget.position + new Vector3(
+                    Mathf.Cos(radian) * followDistance,
+                    Mathf.Sin(radian) * followDistance,
+                    0);
+
+                // 将草莓平滑移动到目标位置
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f是平滑因子，可以调整
             }
 
             yield return null;
@@ -75,3 +98,7 @@ public class Reward : MonoBehaviour
         StartCoroutine(ReturnToOriginalPosition());
     }
 }
+
+
+
+

@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }  // 单例模式
 
     public AudioClip[] soundEffects;  // 音效库
+    public AudioClip[] deathSoundEffects;
     public AudioClip[] backgroundMusic;  // 背景音乐库
     private AudioSource audioSource;  // 播放音效的组件
     private AudioSource bgMusicSource;  // 播放背景音乐的组件
@@ -18,20 +19,26 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // 保持在场景切换时不会被销毁
         }
         else
         {
             Destroy(gameObject);  // 如果实例已存在，销毁当前对象
         }
     }
-
+    private void OnEnable()
+    {
+        EventManager.Instance.AddEvent("Death", PlayDeathSound);
+    }
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveEvent("Death", PlayDeathSound);
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();  // 获取 AudioSource 组件
         bgMusicSource = gameObject.AddComponent<AudioSource>();  // 添加另一个 AudioSource 组件用于背景音乐
 
-        PlayRandomBackgroundMusic();  // 启动背景音乐播放
+        //PlayRandomBackgroundMusic();  // 启动背景音乐播放
     }
 
     public void PlayRandomSound()
@@ -47,7 +54,19 @@ public class AudioManager : MonoBehaviour
 
         audioSource.PlayOneShot(clip);  // 播放音效
     }
+    public void PlayDeathSound()
+    {
+        if (deathSoundEffects.Length == 0)
+        {
+            Debug.LogWarning("Sound effects not assigned.");
+            return;
+        }
 
+        int randomIndex = Random.Range(0, deathSoundEffects.Length);  // 随机选择音效
+        AudioClip clip = deathSoundEffects[randomIndex];  // 获取随机音效
+
+        audioSource.PlayOneShot(clip);  // 播放音效
+    }
     private void PlayRandomBackgroundMusic()
     {
         if (backgroundMusic.Length == 0)
@@ -64,7 +83,7 @@ public class AudioManager : MonoBehaviour
 
         bgMusicCoroutine = StartCoroutine(PlayBackgroundMusicCoroutine());  // 启动新的背景音乐协程
     }
-
+    
     private IEnumerator PlayBackgroundMusicCoroutine()
     {
         while (true)
