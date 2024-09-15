@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c475e864794e2c4289d4e3e91bdd8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSavePoint: {fileID: 0}
+  currentSavePoint: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
 --- !u!1 &273338004
 GameObject:
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUsed: 0
   animator: {fileID: 0}
-  reward: {fileID: 0}
+  microPhone: {fileID: 0}
 --- !u!212 &1395435721
 SpriteRenderer:
   m_ObjectHideFlags: 0

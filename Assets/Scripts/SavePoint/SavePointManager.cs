@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class SavePointManager : Singleton<SavePointManager>
 {
-    public Transform currentSavePoint;
+    public Vector3 currentSavePoint;
     public Transform player;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         player = GameObject.Find("Miku").GetComponent<Transform>();
     }
 
     private void Start()
     {
-        currentSavePoint = transform;
+        currentSavePoint = player.transform.position;
     }
 
     private void OnEnable()
@@ -24,7 +25,7 @@ public class SavePointManager : Singleton<SavePointManager>
 
     public void OnDeath()
     {
-        player.transform.position = currentSavePoint.position;
+        player.transform.position = currentSavePoint;
         player.GetComponent<HatsuneController>().canMove = true;
     }
 }
