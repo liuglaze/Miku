@@ -12,13 +12,6 @@ public class CollectionGuid : MonoBehaviour
         DataManager.Instance.RegisterCollection(this);
         hasCollect = DataManager.Instance.GetHasCollectedStatus(guid);
     }
-    private void Start()
-    {
-        if(hasCollect)
-        {
-           gameObject.SetActive(false);
-        }
-    }
     private void OnValidate()
     {
         GenerateGuid();

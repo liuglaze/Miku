@@ -13,7 +13,10 @@ public class SavePoint : MonoBehaviour
         microPhone = transform.GetChild(0).gameObject;
         collectionGuid=GetComponent<CollectionGuid>();
     }
-
+    private void OnEnable()
+    {
+        isUsed = collectionGuid.hasCollect;
+    }
     private void Start()
     {
         microPhone.SetActive(false);
@@ -29,6 +32,7 @@ public class SavePoint : MonoBehaviour
             Debug.Log(transform.position);
             SavePointManager.Instance.currentSavePoint = transform.position;
             isUsed = true;
+            collectionGuid.hasCollect = true;
         }       
     }
 

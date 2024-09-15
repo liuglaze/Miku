@@ -10,9 +10,17 @@ public class Reward : MonoBehaviour
     private int rewardIndex; // 每个草莓的索引
     private int totalRewards; // 当前跟随的草莓总数
     public CollectionGuid collectionGuid;
-    private void OnEnable()
+    private void Awake()
     {
         collectionGuid = GetComponent<CollectionGuid>();
+
+    }
+    private void OnEnable()
+    {
+        if(collectionGuid.hasCollect)
+        {
+            gameObject.SetActive(false);
+        }
         EventManager.Instance.AddEvent("ReachSavePoint", ReachSavePoint);
         // 订阅玩家死亡事件
         EventManager.Instance.AddEvent("Death", OnPlayerDied);
