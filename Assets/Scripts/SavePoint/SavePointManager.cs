@@ -7,6 +7,11 @@ public class SavePointManager : Singleton<SavePointManager>
     public Transform currentSavePoint;
     public Transform player;
 
+    private void Awake()
+    {
+        player = GameObject.Find("Miku").GetComponent<Transform>();
+    }
+
     private void Start()
     {
         currentSavePoint = transform;
