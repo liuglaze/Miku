@@ -6,7 +6,6 @@ public class HatsuneController : MonoBehaviour
     public float maxSpeed = 10f;       // 最大速度
     public float directionSmoothTime = 0.5f;  // 方向切换的平滑时间
     public float speedSmoothTime = 0.5f;      // 速度变化的平滑时间
-    public float liftForce = 5f;  // 按键时施加的升力
 
     private Rigidbody2D rb;
     private Vector3 currentDirection = Vector3.zero; // 当前的运动方向
@@ -23,7 +22,16 @@ public class HatsuneController : MonoBehaviour
     public Animator leftHair;
     public Animator rightHair;
 
+    public bool canMove;
 
+    private void OnEnable()
+    {
+        EventManager.Instance.AddEvent("Death", OnDeath);
+    }
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveEvent("Death", OnDeath);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +39,10 @@ public class HatsuneController : MonoBehaviour
 
     void Update()
     {
+        if (!canMove)
+        {
+            return;
+        }
         bool leftMouse = Input.GetMouseButton(0);  // 检测鼠标左键
         bool rightMouse = Input.GetMouseButton(1); // 检测鼠标右键
         leftHair.SetBool("IsPress", leftMouse);
@@ -61,9 +73,9 @@ public class HatsuneController : MonoBehaviour
         if (leftMouse || rightMouse)
         {
             targetSpeed = maxSpeed;
-            if(currentSpeed < 4f)
+            if(currentSpeed < 15f)
             {
-                currentSpeed = 4f;
+                currentSpeed = 15f;
             }
         }
         else
@@ -78,11 +90,7 @@ public class HatsuneController : MonoBehaviour
         }
         else
         {
-            currentDirection = Vector3.SmoothDamp(currentDirection, Vector3.zero, ref directionRefSepcial, 3f);
-        }
-        if (currentDirection.magnitude > 0)
-        {
-            currentDirection.Normalize();
+            currentDirection = Vector3.SmoothDamp(currentDirection, Vector3.zero, ref directionRefSepcial, 1f);
         }
         if(targetSpeed != 0f)
         {
@@ -91,10 +99,10 @@ public class HatsuneController : MonoBehaviour
         }
         else
         {
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedRefSpecial, 3f);
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedRefSpecial, 1f);
         }
         // 水平运动的速度
-        Vector3 velocity = currentDirection * currentSpeed;
+        Vector3 velocity = currentDirection.normalized * currentSpeed;
         // 施加向上的升力
         if (!(leftMouse || rightMouse))
         {
@@ -104,11 +112,14 @@ public class HatsuneController : MonoBehaviour
         // 将最终速度应用到 Rigidbody
 
         rb.velocity = velocity;
-      
-
-
     }
-
+     public void OnDeath()
+    {
+        canMove = false;
+        rb.velocity = Vector3.zero;
+        currentDirection = Vector3.zero;
+        currentSpeed = 0f;
+    }
 
 }
 
