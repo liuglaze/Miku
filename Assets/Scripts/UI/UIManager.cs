@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseControl : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public bool isPaused;
+    public GameObject menu;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if(menu.activeInHierarchy)
             {
-                Time.timeScale = 1.0f;
-                isPaused = false;
+                menu.SetActive(false);
             }
             else
             {
-                Time .timeScale = 0.0f;
-                isPaused = true;
+                menu.SetActive(true);
             }
         }
     }
