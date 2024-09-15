@@ -7,10 +7,11 @@ public class SavePoint : MonoBehaviour
     public bool isUsed=false;
     public Animator animator;
     public GameObject microPhone;
-
+    public CollectionGuid collectionGuid;
     private void Awake()
     {
         microPhone = transform.GetChild(0).gameObject;
+        collectionGuid=GetComponent<CollectionGuid>();
     }
 
     private void Start()

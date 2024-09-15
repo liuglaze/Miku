@@ -14,7 +14,6 @@ public class EndPoint : MonoBehaviour
         if (!hasTriggered && collision.CompareTag("Player"))
         {
             hasTriggered = true; // 防止重复触发
-            GameManager.Instance.CompleteLevel();
             // 播放通关动画
             //animator.SetTrigger("PlayEndAnimation");
             Debug.Log(1);

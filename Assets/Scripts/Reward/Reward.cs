@@ -9,30 +9,33 @@ public class Reward : MonoBehaviour
     public bool isFollowing = false; // 是否正在跟随
     private int rewardIndex; // 每个草莓的索引
     private int totalRewards; // 当前跟随的草莓总数
-
+    public CollectionGuid collectionGuid;
     private void OnEnable()
     {
+        collectionGuid = GetComponent<CollectionGuid>();
         EventManager.Instance.AddEvent("ReachSavePoint", ReachSavePoint);
+        // 订阅玩家死亡事件
+        EventManager.Instance.AddEvent("Death", OnPlayerDied);
     }
     private void OnDisable()
     {
         EventManager.Instance.RemoveEvent("ReachSavePoint", ReachSavePoint);
+        // 取消订阅玩家死亡事件
+        EventManager.Instance.RemoveEvent("Death", OnPlayerDied);
     }
     private void Start()
     {
         // 保存草莓的原始位置
         originalPosition = transform.position;
-        // 订阅玩家死亡事件
-        EventManager.Instance.AddEvent("Death", OnPlayerDied);
         rewardIndex = RewardManager.Instance.GetRewardIndex(this);
         totalRewards = RewardManager.Instance.GetTotalRewards();
     }
 
-    private void OnDestroy()
+    private void OnCollect()
     {
-        // 取消订阅玩家死亡事件
-        EventManager.Instance.RemoveEvent("Death", OnPlayerDied);
+        collectionGuid.hasCollect = true;
         RewardManager.Instance.strawBerryAmount++;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +54,7 @@ public class Reward : MonoBehaviour
     {
         if(isFollowing)
         {
-            Destroy(gameObject);
+            OnCollect();
         }
     }
     private IEnumerator FollowTarget()
