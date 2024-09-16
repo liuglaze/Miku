@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class StartMenu : MonoBehaviour
 {
     public Button startBtn;
     public Button continueBtn;
-    public Button quitBtn;
     public Button rankBtn;
+    public Button quitBtn;
     private void OnEnable()
     {
         if (startBtn != null)
@@ -24,6 +25,10 @@ public class StartMenu : MonoBehaviour
         {
             quitBtn.onClick.AddListener(OnQuitClicked);
         }
+        if (rankBtn != null)
+        {
+            rankBtn.onClick.AddListener(OnRankClicked);
+        }
     }
 
     private void OnDisable()
@@ -37,6 +42,12 @@ public class StartMenu : MonoBehaviour
         {
             continueBtn.onClick.RemoveListener(OnContinueClicked);
         }
+
+        if (rankBtn != null)
+        {
+            rankBtn.onClick.RemoveListener(OnRankClicked);
+        }
+
         if (quitBtn != null)
         {
             quitBtn.onClick.RemoveListener(OnQuitClicked);
@@ -55,6 +66,10 @@ public class StartMenu : MonoBehaviour
     {
         GameManager.Instance.loadData=true;
         SceneLoader.Instance.LoadGameScene();
+    }
+    private void OnRankClicked()
+    {
+        
     }
     public void OnQuitClicked()
     {
