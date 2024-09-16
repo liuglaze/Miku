@@ -28,8 +28,6 @@ public class SavePoint : MonoBehaviour
         {
             microPhone.SetActive(true);
             EventManager.Instance.TriggerEvent("ReachSavePoint");
-            Debug.Log(SavePointManager.Instance.currentSavePoint);
-            Debug.Log(transform.position);
             SavePointManager.Instance.currentSavePoint = transform.position;
             isUsed = true;
             collectionGuid.hasCollect = true;
