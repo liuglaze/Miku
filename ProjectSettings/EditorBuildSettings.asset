@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d6fa87b70197450448cf108d0b84cc21
   - enabled: 1
-    path: Assets/Scenes/Liuli.unity
-    guid: eca0183631171d14382493a53c074587
+    path: Assets/Scenes/InsideComputer.unity
+    guid: 65575e37fa8ecf5438f16374e6688bfc
   m_configObjects: {}

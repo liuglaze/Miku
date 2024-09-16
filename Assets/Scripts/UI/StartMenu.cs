@@ -65,6 +65,8 @@ public class StartMenu : Singleton<StartMenu>
     public void OnStartClicked()
     {
         GameManager.Instance.loadData = false;
+        GameManager.Instance.deathCount = 0;
+        GameManager.Instance.completionTime = 0f;
         SceneLoader.Instance.LoadGameScene();
     }
 
@@ -81,5 +83,10 @@ public class StartMenu : Singleton<StartMenu>
     public void OnQuitClicked()
     {
         Application.Quit();
+    }
+    public void RankQuitBtnLogic()
+    {
+        rankList.gameObject.SetActive(false);
+        startMenu.SetActive(true);
     }
 }

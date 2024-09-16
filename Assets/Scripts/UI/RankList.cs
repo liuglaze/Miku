@@ -7,6 +7,8 @@ public class RankList : MonoBehaviour
 {
     public GameObject RankingItemPrefab;
     public Transform RankingContent; // ScrollView µÄ Content ½Úµã
+    public Button backBtn;
+
     private void OnEnable()
     {
         UpdateRankingUI();

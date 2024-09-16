@@ -127,7 +127,7 @@ public class EndPoint : MonoBehaviour
         dialogText.gameObject.SetActive(true);
         //加入排行榜
         DataManager.Instance.AddRank(new RankingListData(GameManager.Instance.deathCount,
-            GameManager.Instance.completionTime, GameManager.Instance.deathCount, playerName));
+            GameManager.Instance.completionTime, GameManager.Instance.GetCollectedItems(), playerName));
         // 6. 显示感谢语
         yield return ShowText($"谢谢你，{playerName}，和你一起度过的{FormatTime(GameManager.Instance.completionTime)}，是我度过的最幸福的一段时光……");
         yield return ShowText($"虽然我从数据库里被重构了{GameManager.Instance.deathCount}次，但你没有放弃。");

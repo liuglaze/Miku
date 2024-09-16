@@ -68,6 +68,7 @@ public class Reward : MonoBehaviour
     }
     private IEnumerator FollowTarget()
     {
+        Vector3 velocity = Vector3.zero; // 用于 SmoothDamp 的速度参数
         while (isFollowing)
         {
             if (followTarget != null)
@@ -75,7 +76,7 @@ public class Reward : MonoBehaviour
                 // 计算草莓与跟随目标的圆周排列位置
                 float angleStep = 360f / totalRewards; // 每个草莓的角度间隔
                 float angle = rewardIndex * angleStep; // 当前草莓的角度
-                // 将角度转换为弧度
+                                                       // 将角度转换为弧度
                 float radian = angle * Mathf.Deg2Rad;
 
                 // 计算目标位置，基于角度的极坐标转换为笛卡尔坐标
@@ -84,13 +85,16 @@ public class Reward : MonoBehaviour
                     Mathf.Sin(radian) * followDistance,
                     0);
 
-                // 将草莓平滑移动到目标位置
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f是平滑因子，可以调整
+                // 使用 SmoothDamp 平滑移动到目标位置，确保不会“瞬移”
+                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.1f); // 0.2f 是平滑时间，数值越小跟随越快
+
+                // 可以调节平滑时间（如 0.2f），根据跟随速度需求调整。
             }
 
-            yield return null;
+            yield return null; // 每帧更新
         }
     }
+
 
     private IEnumerator ReturnToOriginalPosition()
     {
