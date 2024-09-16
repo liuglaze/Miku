@@ -87,7 +87,7 @@ public class DataManager : Singleton<DataManager>
     {
         if (GameManager.Instance.loadData)
         {
-            ApplyData();
+            StartApplyingData();
         }
     }
 
@@ -191,14 +191,43 @@ public class DataManager : Singleton<DataManager>
         return new List<RankingListData>(); // 如果文件不存在，返回空列表
     }
 
-    public void ApplyData()
+    public void StartApplyingData()
     {
-        SavePointManager.Instance.currentSavePoint = currentContinueData.currentSavePos.GetVector3();
-        GameManager.Instance.completionTime = currentContinueData.completeTime;
-        GameManager.Instance.deathCount = currentContinueData.deathCount;
-        RewardManager.Instance.strawBerryAmount = currentContinueData.collectionAmount;
-        SavePointManager.Instance.OnDeath();
+        // 启动协程
+        StartCoroutine(ApplyDataWhenReady());
     }
+
+    private IEnumerator ApplyDataWhenReady()
+    {
+        // 等待 SavePointManager, RewardManager, GameManager 实例全部不为空
+        while (SavePointManager.Instance == null || RewardManager.Instance == null || GameManager.Instance == null)
+        {
+            yield return null;  // 等待下一帧继续检查
+        }
+
+        // 当所有实例都不为空时，执行应用数据的逻辑
+        ApplyData();
+    }
+
+    private void ApplyData()
+    {
+        // 确保对象都已存在
+        if (currentContinueData != null)
+        {
+            SavePointManager.Instance.currentSavePoint = currentContinueData.currentSavePos.GetVector3();
+            GameManager.Instance.completionTime = currentContinueData.completeTime;
+            GameManager.Instance.deathCount = currentContinueData.deathCount;
+            RewardManager.Instance.strawBerryAmount = currentContinueData.collectionAmount;
+
+            // 可能包含一些初始化后的操作
+            SavePointManager.Instance.OnDeath();
+        }
+        else
+        {
+            Debug.LogError("currentContinueData is null");
+        }
+    }
+
     // 删除保存的数据
     public void DeleteSaveData()
     {
