@@ -6,6 +6,9 @@ public class Menu : MonoBehaviour
     public PauseControl pauseControl;
     public Button backBtn;
     public Button QuitBtn;
+    public Slider mainVolume;
+    public Slider sfxSlider;
+    public Slider bgmVolume;
     private void OnEnable()
     {
         pauseControl = GetComponentInParent<PauseControl>();
@@ -18,6 +21,9 @@ public class Menu : MonoBehaviour
         {
             QuitBtn.onClick.AddListener(OnQuitButtonClicked);
         }
+        mainVolume.onValueChanged.AddListener(OnMainVolumeChanged);
+        sfxSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
+        bgmVolume.onValueChanged.AddListener(OnBGMVolumeChanged);
     }
 
     private void OnDisable()
@@ -31,6 +37,9 @@ public class Menu : MonoBehaviour
         {
             QuitBtn.onClick.RemoveListener(OnQuitButtonClicked);
         }
+        mainVolume.onValueChanged.RemoveListener(OnMainVolumeChanged);
+        sfxSlider.onValueChanged.RemoveListener(OnSFXVolumeChanged);
+        bgmVolume.onValueChanged.RemoveListener(OnBGMVolumeChanged);
     }
     
 
@@ -54,6 +63,30 @@ public class Menu : MonoBehaviour
         DataManager.Instance.SaveCollections();
         SceneLoader.Instance.LoadMenuScene();
         gameObject.SetActive(false);
+    }
+    // 主音量 Slider 事件处理
+    private void OnMainVolumeChanged(float value)
+    {
+        AudioManager.Instance.ChangeMainVolume(value);
+    }
+
+    // 音效音量 Slider 事件处理
+    private void OnSFXVolumeChanged(float value)
+    {
+        AudioManager.Instance.ChangeSFXVolume(value);
+    }
+
+    // 背景音乐音量 Slider 事件处理
+    private void OnBGMVolumeChanged(float value)
+    {
+        AudioManager.Instance.ChangeMusicVolume(value);
+    }
+
+    public void ChangeSlider(float mainAmount, float musicAmount, float sfxAmount)
+    {
+        mainVolume.value = (mainAmount + 80) / 100;
+        bgmVolume.value = (musicAmount + 80) / 100;
+        sfxSlider.value = (sfxAmount + 80) / 100;
     }
 }
 

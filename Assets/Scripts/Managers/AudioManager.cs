@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] backgroundMusic;  // 背景音乐库
     private AudioSource audioSource;  // 播放音效的组件
     private AudioSource bgMusicSource;  // 播放背景音乐的组件
-
+    public AudioMixer mixer;
     private Coroutine bgMusicCoroutine;  // 控制背景音乐的协程
 
     private void Awake()
@@ -24,6 +25,9 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);  // 如果实例已存在，销毁当前对象
         }
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        audioSource = audioSources[0];  // 第一个 AudioSource
+        bgMusicSource = audioSources[1];  // 第二个 AudioSource
     }
     private void OnEnable()
     {
@@ -35,12 +39,11 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();  // 获取 AudioSource 组件
-        bgMusicSource = gameObject.AddComponent<AudioSource>();  // 添加另一个 AudioSource 组件用于背景音乐
+        
 
         //PlayRandomBackgroundMusic();  // 启动背景音乐播放
     }
-
+    #region 音效和bgm的播放
     public void PlayRandomSound()
     {
         if (soundEffects.Length == 0)
@@ -146,6 +149,32 @@ public class AudioManager : MonoBehaviour
             bgMusicCoroutine = null;
         }
     }
+    #endregion
+
+    #region 音量控制
+    public void ChangeMainVolume(float amount)
+    {
+        mixer.SetFloat("MasterVolume", amount * 100 - 80);
+    }
+    public void ChangeMusicVolume(float amount)
+    {
+        mixer.SetFloat("BGMVolume", amount * 100 - 80);
+    }
+    public void ChangeSFXVolume(float amount)
+    {
+        mixer.SetFloat("SFXVolume", amount * 100 - 80);
+    }
+    public void ChangeSliderVolume()
+    {
+        float masterAmount;
+        float musicAmount;
+        float sfxAmount;
+        mixer.GetFloat("MasterVolume", out masterAmount);
+        mixer.GetFloat("BGMVolume", out musicAmount);
+        mixer.GetFloat("SFXVolume", out sfxAmount);
+        UIManager.Instance.menu.GetComponent<Menu>().ChangeSlider(masterAmount, musicAmount, sfxAmount);
+    }
+    #endregion
 }
 
 
