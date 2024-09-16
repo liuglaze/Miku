@@ -7929,8 +7929,7 @@ PrefabInstance:
       propertyPath: pauseControl
       value: 
       objectReference: {fileID: 555156143}
-    m_RemovedComponents:
-    - {fileID: 2800328883083995727, guid: 3ee312f67834fa54d93273ae6e3f61dc, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
