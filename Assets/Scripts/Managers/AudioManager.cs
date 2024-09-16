@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
         audioSource = audioSources[0];  // 第一个 AudioSource
         bgMusicSource = audioSources[1];  // 第二个 AudioSource                        
         loopAudioSource = gameObject.AddComponent<AudioSource>();// 动态添加一个新的 AudioSource，用于循环音频
+        DontDestroyOnLoad(this);
     }
     private void OnEnable()
     {

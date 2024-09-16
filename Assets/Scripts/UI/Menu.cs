@@ -57,7 +57,6 @@ public class Menu : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         Resume();
-
         DataManager.Instance.SaveGame(new ContinueData(SavePointManager.Instance.currentSavePoint,
            GameManager.Instance.deathCount,GameManager.Instance.completionTime,GameManager.Instance.GetCollectedItems()));
         DataManager.Instance.SaveCollections();
