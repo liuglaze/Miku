@@ -56,7 +56,13 @@ public class Reward : MonoBehaviour
             isFollowing = true;
             totalRewards = RewardManager.Instance.GetTotalRewards(); // 更新总数
             // 启动跟随协程
-            StartCoroutine(FollowTarget());
+        }
+    }
+    private void LateUpdate()
+    {
+        if (isFollowing && followTarget != null)
+        {
+            FollowTarget();
         }
     }
     public void ReachSavePoint()
@@ -66,34 +72,25 @@ public class Reward : MonoBehaviour
             OnCollect();
         }
     }
-    private IEnumerator FollowTarget()
+    private void FollowTarget()
     {
-        Vector3 velocity = Vector3.zero; // 用于 SmoothDamp 的速度参数
-        while (isFollowing)
-        {
-            if (followTarget != null)
-            {
-                // 计算草莓与跟随目标的圆周排列位置
-                float angleStep = 360f / totalRewards; // 每个草莓的角度间隔
-                float angle = rewardIndex * angleStep; // 当前草莓的角度
-                                                       // 将角度转换为弧度
-                float radian = angle * Mathf.Deg2Rad;
+        // 计算草莓与跟随目标的圆周排列位置
+        float angleStep = 360f / totalRewards; // 每个草莓的角度间隔
+        float angle = rewardIndex * angleStep; // 当前草莓的角度
 
-                // 计算目标位置，基于角度的极坐标转换为笛卡尔坐标
-                Vector3 targetPosition = followTarget.position + new Vector3(
-                    Mathf.Cos(radian) * followDistance,
-                    Mathf.Sin(radian) * followDistance,
-                    0);
+        // 将角度转换为弧度
+        float radian = angle * Mathf.Deg2Rad;
 
-                // 使用 SmoothDamp 平滑移动到目标位置，确保不会“瞬移”
-                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.1f); // 0.2f 是平滑时间，数值越小跟随越快
+        // 计算目标位置，基于角度的极坐标转换为笛卡尔坐标
+        Vector3 targetPosition = followTarget.position + new Vector3(
+            Mathf.Cos(radian) * followDistance,
+            Mathf.Sin(radian) * followDistance,
+            0);
 
-                // 可以调节平滑时间（如 0.2f），根据跟随速度需求调整。
-            }
-
-            yield return null; // 每帧更新
-        }
+        // 使用 Lerp 平滑移动到目标位置
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f 是插值速度，可以根据需求调整
     }
+
 
 
     private IEnumerator ReturnToOriginalPosition()
