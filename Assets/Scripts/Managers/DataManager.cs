@@ -34,15 +34,16 @@ public class ContinueData
 [Serializable]
 public class RankingListData
 {
-    public int deathCount;
     public float completeTime;
     public int collectionAmount;
-
-    public RankingListData(int deathCount, float completeTime, int collectionAmount)
+    public int deathCount;
+    public string playerID;
+    public RankingListData(int deathCount, float completeTime, int collectionAmount, string playerID)
     {
         this.deathCount = deathCount;
         this.completeTime = completeTime;
         this.collectionAmount = collectionAmount;
+        this.playerID = playerID;
     }
 }
 [Serializable]
@@ -166,6 +167,16 @@ public class DataManager : Singleton<DataManager>
     {
         // 添加新的通关数据到排行榜
         ranksData.Add(newRank);
+        // 按收集物品数量优先排序，如果数量相同，再按完成时间排序
+        ranksData.Sort((a, b) =>
+        {
+            int collectionComparison = b.collectionAmount.CompareTo(a.collectionAmount); // 从大到小
+            if (collectionComparison == 0)
+            {
+                return a.completeTime.CompareTo(b.completeTime); // 从小到大
+            }
+            return collectionComparison;
+        });
 
         // 保存更新后的排行榜
         SaveRanking();

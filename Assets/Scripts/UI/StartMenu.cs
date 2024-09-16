@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
-public class StartMenu : MonoBehaviour
+public class StartMenu : Singleton<StartMenu>
 {
     public Button startBtn;
     public Button continueBtn;
     public Button rankBtn;
     public Button quitBtn;
+    public RankList rankList;
+    public GameObject startMenu;
+    public override void Awake()
+    {
+        base.Awake();
+    }
     private void OnEnable()
     {
         if (startBtn != null)
@@ -69,7 +75,8 @@ public class StartMenu : MonoBehaviour
     }
     private void OnRankClicked()
     {
-        
+        rankList.gameObject.SetActive(true);
+        startMenu.SetActive(false);
     }
     public void OnQuitClicked()
     {
