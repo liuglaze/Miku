@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] backgroundMusic;  // 背景音乐库
     private AudioSource audioSource;  // 播放音效的组件
     private AudioSource bgMusicSource;  // 播放背景音乐的组件
+    private AudioSource loopAudioSource;  // 专门用于循环播放音频的 AudioSource
     public AudioMixer mixer;
     private Coroutine bgMusicCoroutine;  // 控制背景音乐的协程
 
@@ -27,7 +28,8 @@ public class AudioManager : MonoBehaviour
         }
         AudioSource[] audioSources = GetComponents<AudioSource>();
         audioSource = audioSources[0];  // 第一个 AudioSource
-        bgMusicSource = audioSources[1];  // 第二个 AudioSource
+        bgMusicSource = audioSources[1];  // 第二个 AudioSource                        
+        loopAudioSource = gameObject.AddComponent<AudioSource>();// 动态添加一个新的 AudioSource，用于循环音频
     }
     private void OnEnable()
     {
@@ -44,6 +46,28 @@ public class AudioManager : MonoBehaviour
         //PlayRandomBackgroundMusic();  // 启动背景音乐播放
     }
     #region 音效和bgm的播放
+    public void PlayLoopingAudioClip(AudioClip clip, float volume)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("AudioClip is null, cannot play.");
+            return;
+        }
+
+        // 设置独立的 loopAudioSource 用于循环播放
+        loopAudioSource.clip = clip;    // 设置音频剪辑
+        loopAudioSource.volume = volume; // 设置音量
+        loopAudioSource.loop = true;    // 设置为循环播放
+        loopAudioSource.Play();         // 播放音频
+    }
+    public void StopLoopingAudioClip()
+    {
+        if (loopAudioSource.isPlaying)
+        {
+            loopAudioSource.Stop();   // 停止循环播放
+            loopAudioSource.clip = null;  // 清空音频剪辑
+        }
+    }
     public void PlayRandomSound()
     {
         if (soundEffects.Length == 0)
