@@ -174,6 +174,7 @@ public class EndPoint : MonoBehaviour
             // 禁用玩家移动
             playerTransform.GetComponent<HatsuneController>().OnEnd();
             // 可以触发吸引到洞口的逻辑
+            EventManager.Instance.TriggerEvent("ReachSavePoint");
         }
     }
 }
