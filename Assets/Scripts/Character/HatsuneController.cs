@@ -124,7 +124,16 @@ public class HatsuneController : MonoBehaviour
         currentDirection = Vector3.zero;
         currentSpeed = 0f;
     }
-
+    public void OnEnd()
+    {
+        leftHair.SetBool("IsPress", false);
+        rightHair.SetBool("IsPress", false);
+        canMove = false;
+        rb.velocity = Vector3.zero;
+        currentDirection = Vector3.zero;
+        currentSpeed = 0f;
+        rb.gravityScale = 0f;
+    }
 }
 
 
