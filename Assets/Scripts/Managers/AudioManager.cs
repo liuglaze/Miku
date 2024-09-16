@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
 
         // 设置独立的 loopAudioSource 用于循环播放
         loopAudioSource.clip = clip;    // 设置音频剪辑
-        loopAudioSource.volume = volume; // 设置音量
+        loopAudioSource.volume = 1f; // 设置音量
         loopAudioSource.loop = true;    // 设置为循环播放
         loopAudioSource.Play();         // 播放音频
     }
