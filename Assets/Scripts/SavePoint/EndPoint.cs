@@ -21,7 +21,7 @@ public class EndPoint : MonoBehaviour
             EventManager.Instance.TriggerEvent("ReachSavePoint", ShowScoreBoard);
             ShowScoreBoard();
             DataManager.Instance.AddRank(new RankingListData(GameManager.Instance.GetDeathCount(),
-                GameManager.Instance.GetCompletionTime(), GameManager.Instance.GetCollectedItems()));
+                GameManager.Instance.GetCompletionTime(), GameManager.Instance.GetCollectedItems(),"FUFU"));
             //EventManager.Instance.TriggerEvent("GameEnd");
         }
     }
