@@ -16,6 +16,7 @@ public class UIManager : Singleton<UIManager>
             else
             {
                 menu.SetActive(true);
+                AudioManager.Instance.ChangeSliderVolume();
             }
         }
     }
