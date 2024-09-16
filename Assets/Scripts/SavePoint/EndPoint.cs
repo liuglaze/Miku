@@ -24,16 +24,22 @@ public class EndPoint : MonoBehaviour
     private string playerName;
     private Coroutine endingRoutine;
     private bool needUse=true;
+    private void Awake()
+    {
+        cameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        SetCameraNoiseActive(false);
+    }
     private void Start()
     {
         // 获取虚拟摄像机的噪声组件
-        cameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     private void Update()
     {
         if (hasTriggered&&needUse)
         {
+            // 启用噪声效果
+            SetCameraNoiseActive(true);
             // 计算玩家和洞口之间的距离
             float distance = Vector3.Distance(playerTransform.position, holeTransform.position);
 
@@ -67,7 +73,24 @@ public class EndPoint : MonoBehaviour
             }
         }
     }
-
+    private void SetCameraNoiseActive(bool active)
+    {
+        if (cameraNoise != null)
+        {
+            if (active)
+            {
+                // 启用噪声效果
+                cameraNoise.m_AmplitudeGain = maxAmplitude;
+                cameraNoise.m_FrequencyGain = 1f; // 你可以调整这个值
+            }
+            else
+            {
+                // 关闭噪声效果
+                cameraNoise.m_AmplitudeGain = 0f;
+                cameraNoise.m_FrequencyGain = 0f;
+            }
+        }
+    }
     private IEnumerator EndGameSequence()
     {
         // 确保视频不会循环播放
