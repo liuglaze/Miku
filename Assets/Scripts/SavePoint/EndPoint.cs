@@ -4,7 +4,6 @@ using System.Collections;
 
 public class EndPoint : MonoBehaviour
 {
-    public Animator animator; // 终点动画的Animator
     public ScoreBoard scoreBoardUI; // 计分板UI的引用
 
     public bool hasTriggered = false;
@@ -16,13 +15,11 @@ public class EndPoint : MonoBehaviour
         {
             hasTriggered = true; // 防止重复触发
             // 播放通关动画
-            //animator.SetTrigger("PlayEndAnimation");
-            Debug.Log(1);
             EventManager.Instance.TriggerEvent("ReachSavePoint", ShowScoreBoard);
-            ShowScoreBoard();
+            //ShowScoreBoard();
             DataManager.Instance.AddRank(new RankingListData(GameManager.Instance.GetDeathCount(),
-                GameManager.Instance.GetCompletionTime(), GameManager.Instance.GetCollectedItems(),"FUFU"));
-            //EventManager.Instance.TriggerEvent("GameEnd");
+                GameManager.Instance.GetCompletionTime(), GameManager.Instance.GetCollectedItems(), "FUFU"));
+            ////EventManager.Instance.TriggerEvent("GameEnd");
         }
     }
 
