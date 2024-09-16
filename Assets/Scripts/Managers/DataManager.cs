@@ -99,27 +99,35 @@ public class DataManager : Singleton<DataManager>
         {
             allCollections.Add(collection);
         }
+        
     }
 
     // 保存所有 CollectionGuid 的数据
     public void SaveCollections()
     {
+        // 先清除所有 null 元素
+        allCollections.RemoveAll(item => item == null);
+
         collectionData.Clear();  // 清空之前的数据
 
         // 遍历所有注册的 CollectionGuid 对象
         foreach (var collection in allCollections)
         {
-            collectionData.Add(new CollectionData
+            if (collection != null) // 确保不是 null
             {
-                guid = collection.GetGuid(),
-                hasUsed = collection.hasCollect
-            }) ;
+                collectionData.Add(new CollectionData
+                {
+                    guid = collection.GetGuid(),
+                    hasUsed = collection.hasCollect
+                });
+            }
         }
 
         // 将 collectionData 列表保存为 JSON 文件
         string json = JsonUtility.ToJson(new CollectionDataWrapper(collectionData));
         File.WriteAllText(collectionFilePath, json);
     }
+
     // 反向加载 CollectionData
     public List<CollectionData> LoadCollectionData()
     {
