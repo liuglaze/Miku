@@ -54,6 +54,12 @@ public class AudioManager : MonoBehaviour
 
         audioSource.PlayOneShot(clip);  // ≤•∑≈“Ù–ß
     }
+
+    public void PlayAudioClip(AudioClip clip,float volume)
+    {
+        audioSource.PlayOneShot(clip,volume);
+    }
+
     public void PlayDeathSound()
     {
         if (deathSoundEffects.Length == 0)
