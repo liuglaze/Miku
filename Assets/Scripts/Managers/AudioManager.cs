@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource loopAudioSource;  // 专门用于循环播放音频的 AudioSource
     public AudioMixer mixer;
     private Coroutine bgMusicCoroutine;  // 控制背景音乐的协程
+    public AudioClip menuBGM;
+
 
     private void Awake()
     {
@@ -32,14 +34,7 @@ public class AudioManager : MonoBehaviour
         loopAudioSource = gameObject.AddComponent<AudioSource>();// 动态添加一个新的 AudioSource，用于循环音频
         DontDestroyOnLoad(this);
     }
-    private void OnEnable()
-    {
-        EventManager.Instance.AddEvent("Death", PlayDeathSound);
-    }
-    private void OnDisable()
-    {
-        EventManager.Instance.RemoveEvent("Death", PlayDeathSound);
-    }
+
     private void Start()
     {
         
@@ -47,6 +42,19 @@ public class AudioManager : MonoBehaviour
         //PlayRandomBackgroundMusic();  // 启动背景音乐播放
     }
     #region 音效和bgm的播放
+
+    public void PlayMenuBGM()
+    {
+        bgMusicSource.clip = menuBGM;  // 设置背景音乐
+        bgMusicSource.loop = true;  // 不循环，播放完一首换下一首
+        bgMusicSource.Play();  // 播放背景音乐
+    }
+    public void StopPlayMenuBGM()
+    {
+        bgMusicSource.clip = null;  // 设置背景音乐
+        bgMusicSource.loop = false;  // 不循环，播放完一首换下一首
+        bgMusicSource.Stop();  // 播放背景音乐
+    }
     public void PlayLoopingAudioClip(AudioClip clip, float volume)
     {
         if (clip == null)
@@ -88,20 +96,7 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(clip,volume);
     }
 
-    public void PlayDeathSound()
-    {
-        if (deathSoundEffects.Length == 0)
-        {
-            Debug.LogWarning("Sound effects not assigned.");
-            return;
-        }
-
-        int randomIndex = Random.Range(0, deathSoundEffects.Length);  // 随机选择音效
-        AudioClip clip = deathSoundEffects[randomIndex];  // 获取随机音效
-
-        audioSource.PlayOneShot(clip);  // 播放音效
-    }
-    private void PlayRandomBackgroundMusic()
+    public void PlayRandomBackgroundMusic()
     {
         if (backgroundMusic.Length == 0)
         {
@@ -166,7 +161,6 @@ public class AudioManager : MonoBehaviour
     public void StopBackgroundMusic()
     {
         bgMusicSource.Stop();  // 停止背景音乐
-
         // 停止协程
         if (bgMusicCoroutine != null)
         {

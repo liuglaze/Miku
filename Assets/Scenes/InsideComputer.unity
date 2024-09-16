@@ -4071,8 +4071,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1760116cb5cab154fb7cfbd56ca33d5c, type: 3}
   - {fileID: 8300000, guid: 16b5712ccc8954745a855b2f5e0aef26, type: 3}
   deathSoundEffects: []
-  backgroundMusic: []
+  backgroundMusic:
+  - {fileID: 8300000, guid: e0777b7e2f10b264596378b98dc6cd3c, type: 3}
+  - {fileID: 8300000, guid: 1101effcc0857c04183f052b65ec9b46, type: 3}
+  - {fileID: 8300000, guid: db1bbf4c2327f5c44a3c984ac440b86a, type: 3}
   mixer: {fileID: 24100000, guid: 52ef927099464604cb70905a851de8e4, type: 2}
+  menuBGM: {fileID: 8300000, guid: ea5f003325cbd944eb4ac1a29f17ba4d, type: 3}
 --- !u!4 &577220212
 Transform:
   m_ObjectHideFlags: 0

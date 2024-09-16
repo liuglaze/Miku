@@ -193,6 +193,7 @@ public class EndPoint : MonoBehaviour
     {
         if (!hasTriggered && collision.CompareTag("Player"))
         {
+            AudioManager.Instance.StopBackgroundMusic();
             hasTriggered = true; // 标记为已经触发
             // 禁用玩家移动
             playerTransform.GetComponent<HatsuneController>().OnEnd();

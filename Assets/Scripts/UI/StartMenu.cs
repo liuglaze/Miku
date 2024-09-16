@@ -18,6 +18,7 @@ public class StartMenu : Singleton<StartMenu>
     }
     private void OnEnable()
     {
+        AudioManager.Instance.PlayMenuBGM();
         if (startBtn != null)
         {
             startBtn.onClick.AddListener(OnStartClicked);
@@ -64,14 +65,17 @@ public class StartMenu : Singleton<StartMenu>
 
     public void OnStartClicked()
     {
+        AudioManager.Instance.StopPlayMenuBGM();
         GameManager.Instance.loadData = false;
         GameManager.Instance.deathCount = 0;
         GameManager.Instance.completionTime = 0f;
         SceneLoader.Instance.LoadGameScene();
+        AudioManager.Instance.PlayRandomBackgroundMusic();
     }
 
     public void OnContinueClicked()
     {
+        AudioManager.Instance.StopPlayMenuBGM();
         GameManager.Instance.loadData=true;
         SceneLoader.Instance.LoadGameScene();
     }
