@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d6fa87b70197450448cf108d0b84cc21
   - enabled: 1
+    path: Assets/Scenes/Eazy.unity
+    guid: 45213862195b5674db505f87cbf99710
+  - enabled: 1
+    path: Assets/Scenes/Normal.unity
+    guid: 549a874899f8bf941be2fd8a1479b39b
+  - enabled: 1
     path: Assets/Scenes/InsideComputer.unity
     guid: 65575e37fa8ecf5438f16374e6688bfc
   m_configObjects: {}

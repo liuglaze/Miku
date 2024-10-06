@@ -12,6 +12,7 @@ public class StartMenu : Singleton<StartMenu>
     public Button quitBtn;
     public RankList rankList;
     public GameObject startMenu;
+    public GameObject DifficultyPanel;
     public override void Awake()
     {
         base.Awake();
@@ -65,13 +66,9 @@ public class StartMenu : Singleton<StartMenu>
 
     public void OnStartClicked()
     {
-        GameManager.Instance.loadData=false;
-        AudioManager.Instance.StopPlayMenuBGM();
-        GameManager.Instance.loadData = false;
-        GameManager.Instance.deathCount = 0;
-        GameManager.Instance.completionTime = 0f;
-        SceneLoader.Instance.LoadGameScene(GameDifficulty.Easy);
-        AudioManager.Instance.PlayRandomBackgroundMusic();
+        //打开难度选择panel
+        DifficultyPanel.SetActive(true);
+        startMenu.SetActive(false);
     }
 
     public void OnContinueClicked()
