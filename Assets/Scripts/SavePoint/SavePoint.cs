@@ -8,6 +8,7 @@ public class SavePoint : MonoBehaviour
     public Animator animator;
     public GameObject microPhone;
     public CollectionGuid collectionGuid;
+    public AudioClip saveSound;
     private void Awake()
     {
         microPhone = transform.GetChild(0).gameObject;
@@ -26,6 +27,7 @@ public class SavePoint : MonoBehaviour
     {
         if(!isUsed)
         {
+            AudioManager.Instance.PlayAudioClip(saveSound,1f);
             microPhone.SetActive(true);
             EventManager.Instance.TriggerEvent("ReachSavePoint");
             SavePointManager.Instance.currentSavePoint = transform.position;

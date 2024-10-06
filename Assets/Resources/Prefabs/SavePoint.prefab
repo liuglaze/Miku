@@ -188,6 +188,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   microPhone: {fileID: 0}
   collectionGuid: {fileID: 0}
+  saveSound: {fileID: 8300000, guid: e02d1b68ab4f1b84ab275c2d4ec0f7e1, type: 3}
 --- !u!61 &5343995791686974594
 BoxCollider2D:
   m_ObjectHideFlags: 0
