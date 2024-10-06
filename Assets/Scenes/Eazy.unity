@@ -756,7 +756,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101317049}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: c895e9f74216e224fba698425b325b34, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: e7402fff4cd1e114ea9c715a183ea9ee, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -3007,6 +3007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentContinueData:
+    currentDifficulty: 0
     currentSavePos:
       x: 0
       y: 0
@@ -6497,6 +6498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6054d01cf9b3104a99a1df090fbb2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGameDifficulty: 0
 --- !u!4 &861011965
 Transform:
   m_ObjectHideFlags: 0
