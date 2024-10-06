@@ -70,7 +70,7 @@ public class StartMenu : Singleton<StartMenu>
         GameManager.Instance.loadData = false;
         GameManager.Instance.deathCount = 0;
         GameManager.Instance.completionTime = 0f;
-        SceneLoader.Instance.LoadGameScene();
+        SceneLoader.Instance.LoadGameScene(GameDifficulty.Easy);
         AudioManager.Instance.PlayRandomBackgroundMusic();
     }
 
@@ -78,7 +78,7 @@ public class StartMenu : Singleton<StartMenu>
     {
         AudioManager.Instance.StopPlayMenuBGM();
         GameManager.Instance.loadData=true;
-        SceneLoader.Instance.LoadGameScene();
+        SceneLoader.Instance.LoadGameScene(GameDifficulty.Easy);
     }
     private void OnRankClicked()
     {

@@ -19,12 +19,14 @@ public class SerializeVector3
 [Serializable]
 public class ContinueData
 {
+    public GameDifficulty currentDifficulty;
     public SerializeVector3 currentSavePos;
     public int deathCount;
     public float completeTime;
     public int collectionAmount;
-    public ContinueData(Vector3 currentSavePos,int deathCount,float completeTime,int collectionAmount)
+    public ContinueData(GameDifficulty gameDifficulty,Vector3 currentSavePos,int deathCount,float completeTime,int collectionAmount)
     {
+        this.currentDifficulty = gameDifficulty;
         this.currentSavePos = new SerializeVector3(currentSavePos);
         this.deathCount = deathCount;
         this.completeTime = completeTime;

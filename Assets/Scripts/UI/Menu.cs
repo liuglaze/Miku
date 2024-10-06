@@ -57,7 +57,7 @@ public class Menu : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         Resume();
-        ContinueData continueData = new ContinueData(SavePointManager.Instance.currentSavePoint,
+        ContinueData continueData = new ContinueData(SceneLoader.Instance.currentGameDifficulty,SavePointManager.Instance.currentSavePoint,
            GameManager.Instance.deathCount,GameManager.Instance.completionTime,GameManager.Instance.GetCollectedItems());
         DataManager.Instance.currentContinueData = continueData;
         DataManager.Instance.SaveGame(continueData);
