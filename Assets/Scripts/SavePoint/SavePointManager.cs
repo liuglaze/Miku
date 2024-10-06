@@ -15,7 +15,7 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void Start()
     {
-        currentSavePoint = player.transform.position;
+        //currentSavePoint = player.transform.position;
     }
 
     private void OnEnable()

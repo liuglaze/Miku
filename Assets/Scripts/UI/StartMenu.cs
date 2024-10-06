@@ -65,6 +65,7 @@ public class StartMenu : Singleton<StartMenu>
 
     public void OnStartClicked()
     {
+        GameManager.Instance.loadData=false;
         AudioManager.Instance.StopPlayMenuBGM();
         GameManager.Instance.loadData = false;
         GameManager.Instance.deathCount = 0;

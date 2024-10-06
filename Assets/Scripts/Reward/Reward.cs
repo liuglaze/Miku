@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class Reward : MonoBehaviour
 {
-    public Transform followTarget; // ¸úËæÄ¿±ê£¨Íæ¼ÒÉíÉÏµÄTransform£©
-    public float followDistance = 2.0f; // ²İİ®Óë¸úËæÄ¿±êÖ®¼äµÄ×îĞ¡¾àÀë
-    private Vector3 originalPosition; // ²İİ®µÄÔ­Ê¼Î»ÖÃ
-    public bool isFollowing = false; // ÊÇ·ñÕıÔÚ¸úËæ
-    private int rewardIndex; // Ã¿¸ö²İİ®µÄË÷Òı
-    private int totalRewards; // µ±Ç°¸úËæµÄ²İİ®×ÜÊı
+    public Transform followTarget; // è·Ÿéšç›®æ ‡ï¼ˆç©å®¶èº«ä¸Šçš„Transformï¼‰
+    public float followDistance = 2.0f; // è‰è“ä¸è·Ÿéšç›®æ ‡ä¹‹é—´çš„æœ€å°è·ç¦»
+    private Vector3 originalPosition; // è‰è“çš„åŸå§‹ä½ç½®
+    public bool isFollowing = false; // æ˜¯å¦æ­£åœ¨è·Ÿéš
+    private int rewardIndex; // æ¯ä¸ªè‰è“çš„ç´¢å¼•
+    private int totalRewards; // å½“å‰è·Ÿéšçš„è‰è“æ€»æ•°
     public CollectionGuid collectionGuid;
     private void Awake()
     {
         collectionGuid = GetComponent<CollectionGuid>();
+        if(collectionGuid.hasCollect)
+        {
+            gameObject.SetActive(false);
+        }
     }
     private void OnEnable()
     {
         EventManager.Instance.AddEvent("ReachSavePoint", ReachSavePoint);
-        // ¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
+        // è®¢é˜…ç©å®¶æ­»äº¡äº‹ä»¶
         EventManager.Instance.AddEvent("Death", OnPlayerDied);
     }
     private void OnDisable()
     {
         EventManager.Instance.RemoveEvent("ReachSavePoint", ReachSavePoint);
-        // È¡Ïû¶©ÔÄÍæ¼ÒËÀÍöÊÂ¼ş
+        // å–æ¶ˆè®¢é˜…ç©å®¶æ­»äº¡äº‹ä»¶
         EventManager.Instance.RemoveEvent("Death", OnPlayerDied);
     }
 
@@ -34,7 +38,7 @@ public class Reward : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        // ±£´æ²İİ®µÄÔ­Ê¼Î»ÖÃ
+        // ä¿å­˜è‰è“çš„åŸå§‹ä½ç½®
         originalPosition = transform.position;
         rewardIndex = RewardManager.Instance.GetRewardIndex(this);
         totalRewards = RewardManager.Instance.GetTotalRewards();
@@ -51,11 +55,11 @@ public class Reward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Éè¶¨¸úËæÄ¿±ê
+            // è®¾å®šè·Ÿéšç›®æ ‡
             followTarget = collision.transform;
             isFollowing = true;
-            totalRewards = RewardManager.Instance.GetTotalRewards(); // ¸üĞÂ×ÜÊı
-            // Æô¶¯¸úËæĞ­³Ì
+            totalRewards = RewardManager.Instance.GetTotalRewards(); // æ›´æ–°æ€»æ•°
+            // å¯åŠ¨è·Ÿéšåç¨‹
         }
     }
     private void LateUpdate()
@@ -74,21 +78,21 @@ public class Reward : MonoBehaviour
     }
     private void FollowTarget()
     {
-        // ¼ÆËã²İİ®Óë¸úËæÄ¿±êµÄÔ²ÖÜÅÅÁĞÎ»ÖÃ
-        float angleStep = 360f / totalRewards; // Ã¿¸ö²İİ®µÄ½Ç¶È¼ä¸ô
-        float angle = rewardIndex * angleStep; // µ±Ç°²İİ®µÄ½Ç¶È
+        // è®¡ç®—è‰è“ä¸è·Ÿéšç›®æ ‡çš„åœ†å‘¨æ’åˆ—ä½ç½®
+        float angleStep = 360f / totalRewards; // æ¯ä¸ªè‰è“çš„è§’åº¦é—´éš”
+        float angle = rewardIndex * angleStep; // å½“å‰è‰è“çš„è§’åº¦
 
-        // ½«½Ç¶È×ª»»Îª»¡¶È
+        // å°†è§’åº¦è½¬æ¢ä¸ºå¼§åº¦
         float radian = angle * Mathf.Deg2Rad;
 
-        // ¼ÆËãÄ¿±êÎ»ÖÃ£¬»ùÓÚ½Ç¶ÈµÄ¼«×ø±ê×ª»»ÎªµÑ¿¨¶û×ø±ê
+        // è®¡ç®—ç›®æ ‡ä½ç½®ï¼ŒåŸºäºè§’åº¦çš„æåæ ‡è½¬æ¢ä¸ºç¬›å¡å°”åæ ‡
         Vector3 targetPosition = followTarget.position + new Vector3(
             Mathf.Cos(radian) * followDistance,
             Mathf.Sin(radian) * followDistance,
             0);
 
-        // Ê¹ÓÃ Lerp Æ½»¬ÒÆ¶¯µ½Ä¿±êÎ»ÖÃ
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f ÊÇ²åÖµËÙ¶È£¬¿ÉÒÔ¸ù¾İĞèÇóµ÷Õû
+        // ä½¿ç”¨ Lerp å¹³æ»‘ç§»åŠ¨åˆ°ç›®æ ‡ä½ç½®
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f æ˜¯æ’å€¼é€Ÿåº¦ï¼Œå¯ä»¥æ ¹æ®éœ€æ±‚è°ƒæ•´
     }
 
 
@@ -97,11 +101,11 @@ public class Reward : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, originalPosition) > 0.1f)
         {
-            // Æ½»¬·µ»Øµ½Ô­Ê¼Î»ÖÃ
-            transform.position = Vector3.Lerp(transform.position, originalPosition, Time.deltaTime * 5f); // 5fÊÇÆ½»¬Òò×Ó£¬¿ÉÒÔµ÷Õû
+            // å¹³æ»‘è¿”å›åˆ°åŸå§‹ä½ç½®
+            transform.position = Vector3.Lerp(transform.position, originalPosition, Time.deltaTime * 5f); // 5fæ˜¯å¹³æ»‘å› å­ï¼Œå¯ä»¥è°ƒæ•´
             yield return null;
         }
-        // È·±£×îÖÕÎ»ÖÃ¾«È·
+        // ç¡®ä¿æœ€ç»ˆä½ç½®ç²¾ç¡®
         transform.position = originalPosition;
     }
 

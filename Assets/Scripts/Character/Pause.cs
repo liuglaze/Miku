@@ -16,7 +16,6 @@ public class PauseControl : MonoBehaviour
             }
             else
             {
-                Debug.Log(1);
                 Time .timeScale = 0.0f;
                 isPaused = true;
             }

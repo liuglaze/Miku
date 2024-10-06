@@ -58,24 +58,23 @@ public class DataManager : Singleton<DataManager>
     public ContinueData currentContinueData;
     public List<RankingListData> ranksData;
     public List<CollectionData> collectionData = new List<CollectionData>();
-    public List<CollectionGuid> allCollections = new List<CollectionGuid>(); // ÓÃÓÚ´æ´¢ËùÓĞ×¢²áµÄ CollectionGuid
+    public List<CollectionGuid> allCollections = new List<CollectionGuid>(); // ç”¨äºå­˜å‚¨æ‰€æœ‰æ³¨å†Œçš„ CollectionGuid
     private string continueDataFilePath;
     private string rankingFilePath;
     private string collectionFilePath;
 
-    // ×Ô¶¨ÒåÂ·¾¶£¬ÀıÈç D:\unity\Miku\Assets\Data
+    // è‡ªå®šä¹‰è·¯å¾„ï¼Œä¾‹å¦‚ D:\unity\Miku\Assets\Data
     private string customDataDirectory = @"D:\unity\Miku\Assets\Data";
 
     override public void Awake()
     {
         base.Awake();
-        // È·±£Ä¿Â¼´æÔÚ£¬Èç¹û²»´æÔÚÔò´´½¨
+        // ç¡®ä¿ç›®å½•å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨åˆ™åˆ›å»º
         if (!Directory.Exists(customDataDirectory))
         {
             Directory.CreateDirectory(customDataDirectory);
         }
-
-        // ÉèÖÃ ContinueData ºÍ RankingºÍCollectionData µÄÂ·¾¶
+        // è®¾ç½® ContinueData å’Œ Rankingå’ŒCollectionData çš„è·¯å¾„
         continueDataFilePath = Path.Combine(customDataDirectory, "continueData.json");
         rankingFilePath = Path.Combine(customDataDirectory, "ranking.json");
         collectionFilePath = Path.Combine(customDataDirectory, "collection.json");
@@ -84,15 +83,8 @@ public class DataManager : Singleton<DataManager>
         collectionData = LoadCollectionData();
         DontDestroyOnLoad(this);
     }
-    private void Start()
-    {
-        if (GameManager.Instance.loadData)
-        {
-            StartApplyingData();
-        }
-    }
 
-    // ×¢²á CollectionGuid
+    // æ³¨å†Œ CollectionGuid
     public void RegisterCollection(CollectionGuid collection)
     {
         if (!allCollections.Contains(collection))
@@ -102,18 +94,18 @@ public class DataManager : Singleton<DataManager>
         
     }
 
-    // ±£´æËùÓĞ CollectionGuid µÄÊı¾İ
+    // ä¿å­˜æ‰€æœ‰ CollectionGuid çš„æ•°æ®
     public void SaveCollections()
     {
-        // ÏÈÇå³ıËùÓĞ null ÔªËØ
+        // å…ˆæ¸…é™¤æ‰€æœ‰ null å…ƒç´ 
         allCollections.RemoveAll(item => item == null);
 
-        collectionData.Clear();  // Çå¿ÕÖ®Ç°µÄÊı¾İ
+        collectionData.Clear();  // æ¸…ç©ºä¹‹å‰çš„æ•°æ®
 
-        // ±éÀúËùÓĞ×¢²áµÄ CollectionGuid ¶ÔÏó
+        // éå†æ‰€æœ‰æ³¨å†Œçš„ CollectionGuid å¯¹è±¡
         foreach (var collection in allCollections)
         {
-            if (collection != null) // È·±£²»ÊÇ null
+            if (collection != null) // ç¡®ä¿ä¸æ˜¯ null
             {
                 collectionData.Add(new CollectionData
                 {
@@ -123,12 +115,12 @@ public class DataManager : Singleton<DataManager>
             }
         }
 
-        // ½« collectionData ÁĞ±í±£´æÎª JSON ÎÄ¼ş
+        // å°† collectionData åˆ—è¡¨ä¿å­˜ä¸º JSON æ–‡ä»¶
         string json = JsonUtility.ToJson(new CollectionDataWrapper(collectionData));
         File.WriteAllText(collectionFilePath, json);
     }
 
-    // ·´Ïò¼ÓÔØ CollectionData
+    // åå‘åŠ è½½ CollectionData
     public List<CollectionData> LoadCollectionData()
     {
         if (File.Exists(collectionFilePath))
@@ -137,12 +129,12 @@ public class DataManager : Singleton<DataManager>
             CollectionDataWrapper wrapper = JsonUtility.FromJson<CollectionDataWrapper>(json);
             return wrapper.collectionData;
         }
-        return new List<CollectionData>(); // Èç¹ûÎÄ¼ş²»´æÔÚ£¬·µ»Ø¿ÕÁĞ±í
+        return new List<CollectionData>(); // å¦‚æœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¿”å›ç©ºåˆ—è¡¨
     }
-    // ¸ù¾İ GUID ²éÕÒ hasCollect ×´Ì¬
+    // æ ¹æ® GUID æŸ¥æ‰¾ hasCollect çŠ¶æ€
     public bool GetHasCollectedStatus(string guid)
     {
-        // ±éÀúÒÑ¼ÓÔØµÄ collectionData ÁĞ±í£¬²éÕÒÆ¥ÅäµÄ GUID
+        // éå†å·²åŠ è½½çš„ collectionData åˆ—è¡¨ï¼ŒæŸ¥æ‰¾åŒ¹é…çš„ GUID
         foreach (var data in collectionData)
         {
             if (data.guid == guid)
@@ -150,16 +142,16 @@ public class DataManager : Singleton<DataManager>
                 return data.hasUsed;
             }
         }
-        return false; // Ä¬ÈÏ·µ»Ø false£¬±íÊ¾Ã»ÓĞÕÒµ½ÒÑÊÕ¼¯×´Ì¬
+        return false; // é»˜è®¤è¿”å› falseï¼Œè¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°å·²æ”¶é›†çŠ¶æ€
     }
-    // ±£´æ ContinueData
+    // ä¿å­˜ ContinueData
     public void SaveGame(ContinueData continueData)
     {
         string json = JsonUtility.ToJson(continueData);
         File.WriteAllText(continueDataFilePath, json);
     }
 
-    // ¼ÓÔØ ContinueData
+    // åŠ è½½ ContinueData
     public ContinueData LoadGame()
     {
         if (File.Exists(continueDataFilePath))
@@ -167,30 +159,30 @@ public class DataManager : Singleton<DataManager>
             string json = File.ReadAllText(continueDataFilePath);
             return JsonUtility.FromJson<ContinueData>(json);
         }
-        return null; // Èç¹ûÎÄ¼ş²»´æÔÚ£¬·µ»Ø null
+        return null; // å¦‚æœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¿”å› null
     }
 
-    // Ìí¼ÓÒ»¸öĞÂµÄÅÅÃû²¢±£´æ
+    // æ·»åŠ ä¸€ä¸ªæ–°çš„æ’åå¹¶ä¿å­˜
     public void AddRank(RankingListData newRank)
     {
-        // Ìí¼ÓĞÂµÄÍ¨¹ØÊı¾İµ½ÅÅĞĞ°ñ
+        // æ·»åŠ æ–°çš„é€šå…³æ•°æ®åˆ°æ’è¡Œæ¦œ
         ranksData.Add(newRank);
-        // °´ÊÕ¼¯ÎïÆ·ÊıÁ¿ÓÅÏÈÅÅĞò£¬Èç¹ûÊıÁ¿ÏàÍ¬£¬ÔÙ°´Íê³ÉÊ±¼äÅÅĞò
+        // æŒ‰æ”¶é›†ç‰©å“æ•°é‡ä¼˜å…ˆæ’åºï¼Œå¦‚æœæ•°é‡ç›¸åŒï¼Œå†æŒ‰å®Œæˆæ—¶é—´æ’åº
         ranksData.Sort((a, b) =>
         {
-            int collectionComparison = b.collectionAmount.CompareTo(a.collectionAmount); // ´Ó´óµ½Ğ¡
+            int collectionComparison = b.collectionAmount.CompareTo(a.collectionAmount); // ä»å¤§åˆ°å°
             if (collectionComparison == 0)
             {
-                return a.completeTime.CompareTo(b.completeTime); // ´ÓĞ¡µ½´ó
+                return a.completeTime.CompareTo(b.completeTime); // ä»å°åˆ°å¤§
             }
             return collectionComparison;
         });
 
-        // ±£´æ¸üĞÂºóµÄÅÅĞĞ°ñ
+        // ä¿å­˜æ›´æ–°åçš„æ’è¡Œæ¦œ
         SaveRanking();
     }
 
-    // ±£´æÅÅĞĞ°ñÊı¾İ
+    // ä¿å­˜æ’è¡Œæ¦œæ•°æ®
     public void SaveRanking()
     {
         RankingListWrapper wrapper = new RankingListWrapper(ranksData);
@@ -198,7 +190,7 @@ public class DataManager : Singleton<DataManager>
         File.WriteAllText(rankingFilePath, json);
     }
 
-    // ¼ÓÔØÅÅĞĞ°ñÊı¾İ
+    // åŠ è½½æ’è¡Œæ¦œæ•°æ®
     public List<RankingListData> LoadRanking()
     {
         if (File.Exists(rankingFilePath))
@@ -207,38 +199,39 @@ public class DataManager : Singleton<DataManager>
             RankingListWrapper wrapper = JsonUtility.FromJson<RankingListWrapper>(json);
             return wrapper.rankingData;
         }
-        return new List<RankingListData>(); // Èç¹ûÎÄ¼ş²»´æÔÚ£¬·µ»Ø¿ÕÁĞ±í
+        return new List<RankingListData>(); // å¦‚æœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¿”å›ç©ºåˆ—è¡¨
     }
 
     public void StartApplyingData()
     {
-        // Æô¶¯Ğ­³Ì
+        // å¯åŠ¨åç¨‹
         StartCoroutine(ApplyDataWhenReady());
     }
 
     private IEnumerator ApplyDataWhenReady()
     {
-        // µÈ´ı SavePointManager, RewardManager, GameManager ÊµÀıÈ«²¿²»Îª¿Õ
+        // ç­‰å¾… SavePointManager, RewardManager, GameManager å®ä¾‹å…¨éƒ¨ä¸ä¸ºç©º
         while (SavePointManager.Instance == null || RewardManager.Instance == null || GameManager.Instance == null)
         {
-            yield return null;  // µÈ´ıÏÂÒ»Ö¡¼ÌĞø¼ì²é
+            yield return null;  // ç­‰å¾…ä¸‹ä¸€å¸§ç»§ç»­æ£€æŸ¥
         }
 
-        // µ±ËùÓĞÊµÀı¶¼²»Îª¿ÕÊ±£¬Ö´ĞĞÓ¦ÓÃÊı¾İµÄÂß¼­
+        // å½“æ‰€æœ‰å®ä¾‹éƒ½ä¸ä¸ºç©ºæ—¶ï¼Œæ‰§è¡Œåº”ç”¨æ•°æ®çš„é€»è¾‘
         ApplyData();
     }
 
     private void ApplyData()
     {
-        // È·±£¶ÔÏó¶¼ÒÑ´æÔÚ
+        // ç¡®ä¿å¯¹è±¡éƒ½å·²å­˜åœ¨
         if (currentContinueData != null)
         {
+            Debug.Log(currentContinueData.currentSavePos.GetVector3());
             SavePointManager.Instance.currentSavePoint = currentContinueData.currentSavePos.GetVector3();
             GameManager.Instance.completionTime = currentContinueData.completeTime;
             GameManager.Instance.deathCount = currentContinueData.deathCount;
             RewardManager.Instance.strawBerryAmount = currentContinueData.collectionAmount;
 
-            // ¿ÉÄÜ°üº¬Ò»Ğ©³õÊ¼»¯ºóµÄ²Ù×÷
+            // å¯èƒ½åŒ…å«ä¸€äº›åˆå§‹åŒ–åçš„æ“ä½œ
             SavePointManager.Instance.OnDeath();
         }
         else
@@ -247,7 +240,7 @@ public class DataManager : Singleton<DataManager>
         }
     }
 
-    // É¾³ı±£´æµÄÊı¾İ
+    // åˆ é™¤ä¿å­˜çš„æ•°æ®
     public void DeleteSaveData()
     {
         if (File.Exists(continueDataFilePath))
@@ -262,7 +255,7 @@ public class DataManager : Singleton<DataManager>
 }
 
 
-// ÓÃÓÚ°ü×°ÅÅĞĞ°ñÊı¾İµÄ¸¨ÖúÀà
+// ç”¨äºåŒ…è£…æ’è¡Œæ¦œæ•°æ®çš„è¾…åŠ©ç±»
 [System.Serializable]
 public class RankingListWrapper
 {
@@ -274,7 +267,7 @@ public class RankingListWrapper
     }
 }
 
-// °ü×° CollectionData µÄÀà
+// åŒ…è£… CollectionData çš„ç±»
 [System.Serializable]
 public class CollectionDataWrapper
 {

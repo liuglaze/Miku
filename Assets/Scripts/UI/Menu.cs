@@ -57,25 +57,28 @@ public class Menu : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         Resume();
-        DataManager.Instance.SaveGame(new ContinueData(SavePointManager.Instance.currentSavePoint,
-           GameManager.Instance.deathCount,GameManager.Instance.completionTime,GameManager.Instance.GetCollectedItems()));
+        ContinueData continueData = new ContinueData(SavePointManager.Instance.currentSavePoint,
+           GameManager.Instance.deathCount,GameManager.Instance.completionTime,GameManager.Instance.GetCollectedItems());
+        DataManager.Instance.currentContinueData = continueData;
+        DataManager.Instance.SaveGame(continueData);
         DataManager.Instance.SaveCollections();
+        DataManager.Instance.collectionData=DataManager.Instance.LoadCollectionData();
         SceneLoader.Instance.LoadMenuScene();
         gameObject.SetActive(false);
     }
-    // Ö÷ÒôÁ¿ Slider ÊÂ¼ş´¦Àí
+    // ä¸»éŸ³é‡ Slider äº‹ä»¶å¤„ç†
     private void OnMainVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeMainVolume(value);
     }
 
-    // ÒôĞ§ÒôÁ¿ Slider ÊÂ¼ş´¦Àí
+    // éŸ³æ•ˆéŸ³é‡ Slider äº‹ä»¶å¤„ç†
     private void OnSFXVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeSFXVolume(value);
     }
 
-    // ±³¾°ÒôÀÖÒôÁ¿ Slider ÊÂ¼ş´¦Àí
+    // èƒŒæ™¯éŸ³ä¹éŸ³é‡ Slider äº‹ä»¶å¤„ç†
     private void OnBGMVolumeChanged(float value)
     {
         AudioManager.Instance.ChangeMusicVolume(value);

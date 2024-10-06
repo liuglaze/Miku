@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: cf198eca-ef2e-4aa2-932d-eff0cb257646
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (4)
@@ -514,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 9d1141a5-fd60-4d7f-ad8d-b3aa1df1762c
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -1157,6 +1165,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: e522eb39-53f0-400c-adcb-22db5ab75bb2
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (3)
@@ -1218,6 +1230,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: 180fd51d-d2b8-4d6a-8bb3-d7fc9c7c481c
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -1274,6 +1290,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 7c28b02f-a9f8-4650-9053-1b2aa87ac00a
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -1551,6 +1571,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 6b703b76-39cc-4d33-b1d5-ea09fb7be41b
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -2048,7 +2072,7 @@ Transform:
   m_GameObject: {fileID: 349185437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -37.9, z: -10}
+  m_LocalPosition: {x: 10, y: -41.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3693,6 +3717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 371bbf39-4f1f-4784-b4a2-1073d7ac3c94
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (2)
@@ -4122,7 +4150,7 @@ Transform:
   m_GameObject: {fileID: 584591319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -37.9, z: 0}
+  m_LocalPosition: {x: 10, y: -41.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4825,6 +4853,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: f97bf47d-d8aa-432b-aef0-f92e17a2429d
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -5221,7 +5253,7 @@ Transform:
   m_GameObject: {fileID: 675089153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -37.9, z: -10}
+  m_LocalPosition: {x: 10, y: -41.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5278,6 +5310,10 @@ PrefabInstance:
     - target: {fileID: 1480896565423735987, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 9e1089dc-80c4-4cbf-835f-c15c780f51d9
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -5906,6 +5942,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: fd3e9d8d-d4b6-4aa2-a064-e4344b4d4715
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (2)
@@ -5962,6 +6002,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 778f38ab-0379-4913-aa21-2d32125948a2
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -6122,6 +6166,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 8760cd42-2e0d-490b-8000-40d2bbb3abf7
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -6286,6 +6334,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: e6cb3930-f099-4d48-bee9-3d90e12690be
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (6)
@@ -6342,6 +6394,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: a7ffc608-0536-485a-85d5-c68473b92e93
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -6509,6 +6565,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: e208ee62-7a86-45f5-9bf9-54f30512e692
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (2)
@@ -6640,6 +6700,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: 17c036db-c010-4cf4-8ff0-aba0b22020e3
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -6705,6 +6769,10 @@ PrefabInstance:
     - target: {fileID: 5470711298180545795, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: 8cfde8ec-1657-4f15-a936-2f0f848b87d5
       objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
@@ -8336,6 +8404,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 99948040-fe4a-4035-9523-e7150b60359c
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music
@@ -8725,6 +8797,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: b4a69e13-7a75-4d0d-b33c-655476de0ab5
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music
@@ -9094,6 +9170,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 0266c2f6-c06c-4b66-808b-4470f7e4b4b8
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (2)
@@ -9151,6 +9231,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 6595e9e4-e214-466a-b3a1-19fc1c2fb614
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (1)
@@ -9207,6 +9291,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: ca24b39f-b6db-47ac-8936-bfc73f242070
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -9512,6 +9600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 2561a53b-3269-45ee-af2a-f55886b521a8
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (2)
@@ -9568,6 +9660,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 879417d7-31c9-40db-8810-848e39a3f272
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -9811,6 +9907,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 71705944-f236-4791-af99-24aa731f11e4
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -10412,6 +10512,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: a16495a0-ca86-4eed-8c60-35465fb00a70
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -10553,6 +10657,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: 5ed10776-d0e8-49b7-9ae3-9496a2c7ffe0
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -10614,6 +10722,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 9de15d8a-5fe0-4956-a8b3-e2774609c6d3
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -10681,6 +10793,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -2.36
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: dc10e7f6-0d1e-4872-b99e-d8c7e9aa0a7d
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (1)
@@ -10737,6 +10853,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 7deed508-edba-45d4-85ed-87868f3e1f20
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -10923,6 +11043,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: e1df8832-dcaf-4ce1-96f0-e1a88e93333f
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -11419,6 +11543,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: cf8bc0c0-bf05-4fc1-a88b-62f4bfd15190
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -12058,6 +12186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 20967c3f-7bbc-4400-b1ba-b13f9d16a4af
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (3)
@@ -12234,6 +12366,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: da8bf435-e6f8-4f8b-a7e8-5f2dac2c4506
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (5)
@@ -12290,6 +12426,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 11df043d-cee2-4aba-b963-5b2e57f40348
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -12740,6 +12880,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: d2320abd-e3f8-4d12-b8af-49cae469d1e0
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music
@@ -12857,6 +13001,10 @@ PrefabInstance:
     - target: {fileID: 1480896565423735987, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 4525d984-09f0-48a8-8720-274dbd210404
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -13133,6 +13281,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: fb1ab665-3dbe-4990-ae28-963dac2e20b4
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (3)
@@ -13270,7 +13422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c475e864794e2c4289d4e3e91bdd8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSavePoint: {x: 0, y: 0, z: 0}
+  currentSavePoint: {x: 10, y: -41.8, z: 0}
   player: {fileID: 0}
 --- !u!1001 &1833234449
 PrefabInstance:
@@ -13474,6 +13626,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: b1bebccc-c26f-4fa7-b2ac-51eac1e2767d
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (3)
@@ -13599,6 +13755,10 @@ PrefabInstance:
     - target: {fileID: 257483126289347236, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 2f58a0b4-504e-4604-afa2-8889f3b585a6
       objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
@@ -14093,6 +14253,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 4365a0a1-0727-46f9-a46c-422a04282474
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music (4)
@@ -14418,6 +14582,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: 3c483624-693f-4d26-97a0-bbfbc3a7bc35
+      objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -14651,6 +14819,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 22.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2956849379577629022, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
+      propertyPath: guid
+      value: 4fb8f051-6e99-43c4-a26c-11a303076eb3
+      objectReference: {fileID: 0}
     - target: {fileID: 4276272538187722679, guid: 7766481142d82d349be2b6e149d8db26, type: 3}
       propertyPath: m_Name
       value: Music
@@ -14711,6 +14883,10 @@ PrefabInstance:
     - target: {fileID: 5470711298180545795, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788288184197667389, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
+      propertyPath: guid
+      value: cc523af2-4dbd-4850-afdd-4d4fb5391b38
       objectReference: {fileID: 0}
     - target: {fileID: 8322148766671084229, guid: ca95689e508f99741a1e6f68e48ccf61, type: 3}
       propertyPath: m_Name
