@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d6fa87b70197450448cf108d0b84cc21
   - enabled: 1
-    path: Assets/Scenes/Eazy.unity
-    guid: 45213862195b5674db505f87cbf99710
+    path: Assets/Scenes/Easy.unity
+    guid: f649369ed346e5645b083cdbe23d4407
   - enabled: 1
     path: Assets/Scenes/Normal.unity
-    guid: 549a874899f8bf941be2fd8a1479b39b
+    guid: 3fc6efebaa312014faa6729a1e033156
   - enabled: 1
-    path: Assets/Scenes/InsideComputer.unity
+    path: Assets/Scenes/Hard.unity
     guid: 65575e37fa8ecf5438f16374e6688bfc
   m_configObjects: {}
