@@ -7,23 +7,24 @@ using System;
 
 public class EndPoint : MonoBehaviour
 {
-    public CinemachineVirtualCamera virtualCamera; // ĞéÄâÉãÏñ»ú
-    private CinemachineBasicMultiChannelPerlin cameraNoise; // ÓÃÓÚ¿ØÖÆÔëÉù
-    public Transform holeTransform; // ¶´¿ÚµÄTransform
-    public Transform playerTransform; // Íæ¼ÒTransform
-    public float startShakeDistance = 10f; // ¿ªÊ¼»Î¶¯µÄ¾àÀë·¶Î§£¨½ÏÔ¶µÄ¾àÀë£©
-    public float maxShakeDistance = 2f; // ×î´ó»Î¶¯µÄ¾àÀë·¶Î§£¨½Ó½ü¶´¿ÚµÄ¾àÀë£©
-    public float maxAmplitude = 5f; // ×î´ó»Î¶¯·ù¶È
-    public float attractionSpeed = 2f; // Íæ¼Ò±»ÎüÒıµÄËÙ¶È
+    public CinemachineVirtualCamera virtualCamera; // è™šæ‹Ÿæ‘„åƒæœº
+    private CinemachineBasicMultiChannelPerlin cameraNoise; // ç”¨äºæ§åˆ¶å™ªå£°
+    public Transform holeTransform; // æ´å£çš„Transform
+    public Transform playerTransform; // ç©å®¶Transform
+    public float startShakeDistance = 10f; // å¼€å§‹æ™ƒåŠ¨çš„è·ç¦»èŒƒå›´ï¼ˆè¾ƒè¿œçš„è·ç¦»ï¼‰
+    public float maxShakeDistance = 2f; // æœ€å¤§æ™ƒåŠ¨çš„è·ç¦»èŒƒå›´ï¼ˆæ¥è¿‘æ´å£çš„è·ç¦»ï¼‰
+    public float maxAmplitude = 5f; // æœ€å¤§æ™ƒåŠ¨å¹…åº¦
+    public float attractionSpeed = 2f; // ç©å®¶è¢«å¸å¼•çš„é€Ÿåº¦
     public bool hasTriggered;
-    public VideoPlayer videoPlayer; // ÍÏÈë VideoPlayer ×é¼ş
+    public VideoPlayer videoPlayer; // æ‹–å…¥ VideoPlayer ç»„ä»¶
     public GameObject blackCanvas;
-    public Text dialogText; // ÍÏÈëÏÔÊ¾ÎÄ±¾µÄ Text ×é¼ş
-    public InputField inputField; // ÍÏÈëÍæ¼ÒÊäÈëÃû×ÖµÄ InputField ×é¼ş
-    public GameObject inputFieldObject; // InputField µÄ¸¸ÎïÌå£¨ÓÃÓÚ¼¤»î/Òş²Ø£©
+    public Text dialogText; // æ‹–å…¥æ˜¾ç¤ºæ–‡æœ¬çš„ Text ç»„ä»¶
+    public InputField inputField; // æ‹–å…¥ç©å®¶è¾“å…¥åå­—çš„ InputField ç»„ä»¶
+    public GameObject inputFieldObject; // InputField çš„çˆ¶ç‰©ä½“ï¼ˆç”¨äºæ¿€æ´»/éšè—ï¼‰
     private string playerName;
     private Coroutine endingRoutine;
     private bool needUse=true;
+    private bool afterVideo=false;
     private void Awake()
     {
         cameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -31,39 +32,39 @@ public class EndPoint : MonoBehaviour
     }
     private void Start()
     {
-        // »ñÈ¡ĞéÄâÉãÏñ»úµÄÔëÉù×é¼ş
+        // è·å–è™šæ‹Ÿæ‘„åƒæœºçš„å™ªå£°ç»„ä»¶
     }
 
     private void Update()
     {
         if (hasTriggered&&needUse)
         {
-            // ÆôÓÃÔëÉùĞ§¹û
+            // å¯ç”¨å™ªå£°æ•ˆæœ
             SetCameraNoiseActive(true);
-            // ¼ÆËãÍæ¼ÒºÍ¶´¿ÚÖ®¼äµÄ¾àÀë
+            // è®¡ç®—ç©å®¶å’Œæ´å£ä¹‹é—´çš„è·ç¦»
             float distance = Vector3.Distance(playerTransform.position, holeTransform.position);
 
-            // Ö»ÓĞµ±¾àÀëĞ¡ÓÚstartShakeDistanceÊ±²Å¿ªÊ¼»Î¶¯
+            // åªæœ‰å½“è·ç¦»å°äºstartShakeDistanceæ—¶æ‰å¼€å§‹æ™ƒåŠ¨
             if (distance <= startShakeDistance)
             {
-                // ¹éÒ»»¯¾àÀë£¬È·±£¾àÀëÔ½½ü»Î¶¯Ô½´ó
+                // å½’ä¸€åŒ–è·ç¦»ï¼Œç¡®ä¿è·ç¦»è¶Šè¿‘æ™ƒåŠ¨è¶Šå¤§
                 float t = Mathf.Clamp01((startShakeDistance - distance) / (startShakeDistance - maxShakeDistance));
 
-                // ÔöÇ¿Ô¶´¦»Î¶¯µÄĞ§¹û£¬Ê¹ÓÃÖ¸ÊıÔö³¤À´Ìá¸ß»Î¶¯·ù¶È
+                // å¢å¼ºè¿œå¤„æ™ƒåŠ¨çš„æ•ˆæœï¼Œä½¿ç”¨æŒ‡æ•°å¢é•¿æ¥æé«˜æ™ƒåŠ¨å¹…åº¦
                 float amplitude = Mathf.Lerp(0, maxAmplitude, Mathf.Pow(t, 2));
 
-                // ¿ªÊ¼ÉãÏñ»ú»Î¶¯
+                // å¼€å§‹æ‘„åƒæœºæ™ƒåŠ¨
                 StartCameraShake(amplitude);
             }
 
-            // ½«Íæ¼ÒÖğ½¥ÎüÒıµ½¶´¿Ú
+            // å°†ç©å®¶é€æ¸å¸å¼•åˆ°æ´å£
             playerTransform.position = Vector3.MoveTowards(playerTransform.position, holeTransform.position, attractionSpeed * Time.deltaTime);
 
-            // µ±Íæ¼Òµ½´ï¶´¿ÚÊ±Í£Ö¹»Î¶¯
+            // å½“ç©å®¶åˆ°è¾¾æ´å£æ—¶åœæ­¢æ™ƒåŠ¨
             if (distance <= 0.1f)
             {
                 StopCameraShake();
-                // ²¥·ÅºóĞø¶¯»­»òĞ§¹û
+                // æ’­æ”¾åç»­åŠ¨ç”»æˆ–æ•ˆæœ
                 if(endingRoutine == null)
                 {
                     playerTransform.gameObject.SetActive(false);
@@ -72,6 +73,28 @@ public class EndPoint : MonoBehaviour
                 }
             }
         }
+        // æ£€æµ‹æŒ‰ä¸‹ F é”®è·³è¿‡è§†é¢‘æ’­æ”¾
+    if (Input.GetKeyDown(KeyCode.F))
+    {
+        if (videoPlayer.isPlaying)
+        {
+            SkipVideoPlayback(); // è°ƒç”¨è·³è¿‡è§†é¢‘çš„é€»è¾‘
+        }
+    }
+    }
+
+    private void SkipVideoPlayback()
+    {
+        // åœæ­¢è§†é¢‘æ’­æ”¾
+        videoPlayer.Stop();
+        videoPlayer.gameObject.SetActive(false);
+
+        // å¦‚æœæœ‰æ­£åœ¨æ‰§è¡Œçš„ç»“æŸæ¸¸æˆåºåˆ—åç¨‹ï¼Œå¼ºåˆ¶è·³è¿‡è§†é¢‘éƒ¨åˆ†
+        if (endingRoutine != null)
+        {
+            StopCoroutine(endingRoutine);  // åœæ­¢å½“å‰çš„åç¨‹
+            endingRoutine = StartCoroutine(EndGameSequence(afterVideo: true)); // é‡æ–°å¼€å§‹è·³è¿‡è§†é¢‘åçš„åç¨‹
+        }
     }
     private void SetCameraNoiseActive(bool active)
     {
@@ -79,86 +102,84 @@ public class EndPoint : MonoBehaviour
         {
             if (active)
             {
-                // ÆôÓÃÔëÉùĞ§¹û
+                // å¯ç”¨å™ªå£°æ•ˆæœ
                 cameraNoise.m_AmplitudeGain = maxAmplitude;
-                cameraNoise.m_FrequencyGain = 1f; // Äã¿ÉÒÔµ÷ÕûÕâ¸öÖµ
+                cameraNoise.m_FrequencyGain = 1f; // ä½ å¯ä»¥è°ƒæ•´è¿™ä¸ªå€¼
             }
             else
             {
-                // ¹Ø±ÕÔëÉùĞ§¹û
+                // å…³é—­å™ªå£°æ•ˆæœ
                 cameraNoise.m_AmplitudeGain = 0f;
                 cameraNoise.m_FrequencyGain = 0f;
             }
         }
     }
-    private IEnumerator EndGameSequence()
+    private IEnumerator EndGameSequence(bool afterVideo = false)
     {
-        // È·±£ÊÓÆµ²»»áÑ­»·²¥·Å
-        videoPlayer.isLooping = false;
-        videoPlayer.gameObject.SetActive(true);
-        // 1. ²¥·ÅÊÓÆµ
-        videoPlayer.Play();
+        // è§†é¢‘æœªè·³è¿‡æ—¶æ’­æ”¾è§†é¢‘
+        if (!afterVideo)
+        {
+            videoPlayer.isLooping = false;
+            videoPlayer.gameObject.SetActive(true);
+            videoPlayer.Play();
 
-        // 1. ²¥·ÅÊÓÆµ²¢µÈ´ıÆä½áÊø
-        videoPlayer.Play();
-
-        // µÈ´ıÊÓÆµ²¥·Å½áÊø
-        yield return new WaitForSeconds((float)videoPlayer.length);
-        videoPlayer.gameObject.SetActive(false);
-        // ÊÓÆµ²¥·Å½áÊøºó£¬Ö´ĞĞºóĞøÂß¼­
-        Debug.Log("Video has finished playing.");
-        // 2. ¿ªÊ¼Öğ²½ÏÔÊ¾ÎÄ±¾
+            // ç­‰å¾…è§†é¢‘æ’­æ”¾ç»“æŸ
+            yield return new WaitForSeconds((float)videoPlayer.length);
+            videoPlayer.gameObject.SetActive(false);
+            Debug.Log("Video has finished playing.");
+        }
+        // 2. å¼€å§‹é€æ­¥æ˜¾ç¤ºæ–‡æœ¬
         blackCanvas.SetActive(true);
 
 
 
 
-        yield return ShowText("ÏÂ´ÎÔÙ¼ûÃæµÄÊ±ºò£¬ÎÒÒÑ¾­²»ÔÙÊÇÎÒÁË°É");
-        // 5. Íæ¼ÒÊäÈëÃû×Ö
-        yield return ShowText("¼´±ãÈç´Ë£¬ÎÒ»¹ÊÇÏëÒªÖªµÀ¡ª¡ªÄãµÄÃû×Ö¡­¡­ÊÇ£¿");
+        yield return ShowText("ä¸‹æ¬¡å†è§é¢çš„æ—¶å€™ï¼Œæˆ‘å·²ç»ä¸å†æ˜¯æˆ‘äº†å§");
+        // 5. ç©å®¶è¾“å…¥åå­—
+        yield return ShowText("å³ä¾¿å¦‚æ­¤ï¼Œæˆ‘è¿˜æ˜¯æƒ³è¦çŸ¥é“â€”â€”ä½ çš„åå­—â€¦â€¦æ˜¯ï¼Ÿ");
         dialogText.gameObject.SetActive(false);
-        inputFieldObject.SetActive(true); // ÏÔÊ¾ÊäÈë¿ò
-        inputField.ActivateInputField(); // ¼¤»îÊäÈë¿ò
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); // µÈ´ıÍæ¼Ò°´ÏÂ»Ø³µ¼ü
+        inputFieldObject.SetActive(true); // æ˜¾ç¤ºè¾“å…¥æ¡†
+        inputField.ActivateInputField(); // æ¿€æ´»è¾“å…¥æ¡†
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); // ç­‰å¾…ç©å®¶æŒ‰ä¸‹å›è½¦é”®
         playerName = inputField.text;
 
-        // Òş²ØÊäÈë¿ò
+        // éšè—è¾“å…¥æ¡†
         inputFieldObject.SetActive(false);
         dialogText.gameObject.SetActive(true);
-        //¼ÓÈëÅÅĞĞ°ñ
+        //åŠ å…¥æ’è¡Œæ¦œ
         DataManager.Instance.AddRank(new RankingListData(GameManager.Instance.deathCount,
             GameManager.Instance.completionTime, GameManager.Instance.GetCollectedItems(), playerName));
-        // 6. ÏÔÊ¾¸ĞĞ»Óï
-        yield return ShowText($"Ğ»Ğ»Äã£¬{playerName}£¬ºÍÄãÒ»Æğ¶È¹ıµÄ{FormatTime(GameManager.Instance.completionTime)}£¬ÊÇÎÒ¶È¹ıµÄ×îĞÒ¸£µÄÒ»¶ÎÊ±¹â¡­¡­");
-        yield return ShowText($"ËäÈ»ÎÒ´ÓÊı¾İ¿âÀï±»ÖØ¹¹ÁË{GameManager.Instance.deathCount}´Î£¬µ«ÄãÃ»ÓĞ·ÅÆú¡£");
-        yield return ShowText($"´´ÔìÁË¶ÀÊôÓÚÎÒÃÇµÄ{GameManager.Instance.GetCollectedItems()}¸öÒô·û¡£");
+        // 6. æ˜¾ç¤ºæ„Ÿè°¢è¯­
+        yield return ShowText($"è°¢è°¢ä½ ï¼Œ{playerName}ï¼Œå’Œä½ ä¸€èµ·åº¦è¿‡çš„{FormatTime(GameManager.Instance.completionTime)}ï¼Œæ˜¯æˆ‘åº¦è¿‡çš„æœ€å¹¸ç¦çš„ä¸€æ®µæ—¶å…‰â€¦â€¦");
+        yield return ShowText($"è™½ç„¶æˆ‘ä»æ•°æ®åº“é‡Œè¢«é‡æ„äº†{GameManager.Instance.deathCount}æ¬¡ï¼Œä½†ä½ æ²¡æœ‰æ”¾å¼ƒã€‚");
+        yield return ShowText($"åˆ›é€ äº†ç‹¬å±äºæˆ‘ä»¬çš„{GameManager.Instance.GetCollectedItems()}ä¸ªéŸ³ç¬¦ã€‚");
 
-        // 7. ×îºóµÄ»°Óï²¢·µ»ØÖ÷½çÃæ
-        yield return ShowText("ÄÇÃ´£¬ÓĞÔµÔÙ»áÁË¡­¡­");
+        // 7. æœ€åçš„è¯è¯­å¹¶è¿”å›ä¸»ç•Œé¢
+        yield return ShowText("é‚£ä¹ˆï¼Œæœ‰ç¼˜å†ä¼šäº†â€¦â€¦");
         yield return new WaitForSeconds(2f);
 
-        // 8. ·µ»ØÖ÷½çÃæÂß¼­£¬¿ÉÒÔµ÷ÓÃ³¡¾°ÇĞ»»»òÕßÓÎÏ·½áÊø
+        // 8. è¿”å›ä¸»ç•Œé¢é€»è¾‘ï¼Œå¯ä»¥è°ƒç”¨åœºæ™¯åˆ‡æ¢æˆ–è€…æ¸¸æˆç»“æŸ
         SceneLoader.Instance.LoadMenuScene();
     }
 
     private IEnumerator ShowText(string text)
     {
-        dialogText.text = ""; // Çå¿ÕÎÄ±¾
+        dialogText.text = ""; // æ¸…ç©ºæ–‡æœ¬
         foreach (char letter in text.ToCharArray())
         {
-            dialogText.text += letter; // Öğ×ÖÏÔÊ¾
-            yield return new WaitForSeconds(0.05f); // Ã¿¸ö×ÖÖ®¼äµÄµÈ´ıÊ±¼ä£¬µ÷ÕûÒÔÊÊÓ¦ÄãµÄĞèÇó
+            dialogText.text += letter; // é€å­—æ˜¾ç¤º
+            yield return new WaitForSeconds(0.05f); // æ¯ä¸ªå­—ä¹‹é—´çš„ç­‰å¾…æ—¶é—´ï¼Œè°ƒæ•´ä»¥é€‚åº”ä½ çš„éœ€æ±‚
 
-            // µÈ´ıÍæ¼Òµã»÷Êó±ê×ó¼ü
+            // ç­‰å¾…ç©å®¶ç‚¹å‡»é¼ æ ‡å·¦é”®
             if (Input.GetMouseButtonDown(0))
             {
-                // Èç¹ûÍæ¼Òµã»÷ÁËÊó±ê£¬Ö±½ÓÏÔÊ¾Ê£ÓàÎÄ±¾
+                // å¦‚æœç©å®¶ç‚¹å‡»äº†é¼ æ ‡ï¼Œç›´æ¥æ˜¾ç¤ºå‰©ä½™æ–‡æœ¬
                 dialogText.text = text;
-                break; // ÍË³öÑ­»·£¬¼ÌĞøÖ´ĞĞÏÂÒ»¸öÂß¼­
+                break; // é€€å‡ºå¾ªç¯ï¼Œç»§ç»­æ‰§è¡Œä¸‹ä¸€ä¸ªé€»è¾‘
             }
         }
 
-        // µÈ´ıÍæ¼Òµã»÷¼ÌĞøÏÔÊ¾ºóĞøÎÄ±¾
+        // ç­‰å¾…ç©å®¶ç‚¹å‡»ç»§ç»­æ˜¾ç¤ºåç»­æ–‡æœ¬
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
     }
 
@@ -166,25 +187,25 @@ public class EndPoint : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timeInSeconds / 60F);
         int seconds = Mathf.FloorToInt(timeInSeconds % 60F);
-        return $"{minutes}·Ö{seconds}Ãë";
+        return $"{minutes}åˆ†{seconds}ç§’";
     }
 
-    // ¿ªÊ¼ÉãÏñ»ú»Î¶¯
+    // å¼€å§‹æ‘„åƒæœºæ™ƒåŠ¨
     public void StartCameraShake(float amplitude)
     {
         if (cameraNoise != null)
         {
-            cameraNoise.m_AmplitudeGain = amplitude; // ÉèÖÃÕğ¶¯·ù¶È
-            cameraNoise.m_FrequencyGain = 2.0f; // ¿ÉÒÔ¸ù¾İĞèÇóµ÷ÕûÕğ¶¯ÆµÂÊ
+            cameraNoise.m_AmplitudeGain = amplitude; // è®¾ç½®éœ‡åŠ¨å¹…åº¦
+            cameraNoise.m_FrequencyGain = 2.0f; // å¯ä»¥æ ¹æ®éœ€æ±‚è°ƒæ•´éœ‡åŠ¨é¢‘ç‡
         }
     }
 
-    // Í£Ö¹ÉãÏñ»ú»Î¶¯
+    // åœæ­¢æ‘„åƒæœºæ™ƒåŠ¨
     private void StopCameraShake()
     {
         if (cameraNoise != null)
         {
-            cameraNoise.m_AmplitudeGain = 0f; // Í£Ö¹Õğ¶¯
+            cameraNoise.m_AmplitudeGain = 0f; // åœæ­¢éœ‡åŠ¨
             cameraNoise.m_FrequencyGain = 0f;
         }
     }
@@ -194,10 +215,10 @@ public class EndPoint : MonoBehaviour
         if (!hasTriggered && collision.CompareTag("Player"))
         {
             AudioManager.Instance.StopBackgroundMusic();
-            hasTriggered = true; // ±ê¼ÇÎªÒÑ¾­´¥·¢
-            // ½ûÓÃÍæ¼ÒÒÆ¶¯
+            hasTriggered = true; // æ ‡è®°ä¸ºå·²ç»è§¦å‘
+            // ç¦ç”¨ç©å®¶ç§»åŠ¨
             playerTransform.GetComponent<HatsuneController>().OnEnd();
-            // ¿ÉÒÔ´¥·¢ÎüÒıµ½¶´¿ÚµÄÂß¼­
+            // å¯ä»¥è§¦å‘å¸å¼•åˆ°æ´å£çš„é€»è¾‘
             EventManager.Instance.TriggerEvent("ReachSavePoint");
         }
     }

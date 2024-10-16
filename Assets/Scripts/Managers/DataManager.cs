@@ -203,7 +203,20 @@ public class DataManager : Singleton<DataManager>
         }
         return new List<RankingListData>(); // 如果文件不存在，返回空列表
     }
+    public void ClearRankingData()
+    {
+        // 清空排行榜数据
+        ranksData.Clear();
 
+        // 保存清空后的排行榜数据到文件
+        SaveRanking();
+
+        // 如果需要，也可以选择删除排行榜文件
+        if (File.Exists(rankingFilePath))
+        {
+            File.Delete(rankingFilePath);
+        }
+    }
     public void StartApplyingData()
     {
         // 启动协程
