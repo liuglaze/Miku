@@ -11,6 +11,7 @@ public class Reward : MonoBehaviour
     private int rewardIndex; // 每个草莓的索引
     private int totalRewards; // 当前跟随的草莓总数
     public CollectionGuid collectionGuid;
+    private Coroutine coroutine;
     private void Awake()
     {
         collectionGuid = GetComponent<CollectionGuid>();
@@ -53,9 +54,10 @@ public class Reward : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")&&(coroutine == null))
         {
             // 设定跟随目标
+            Debug.Log("enter");
             followTarget = collision.transform;
             isFollowing = true;
             totalRewards = RewardManager.Instance.GetTotalRewards(); // 更新总数
@@ -107,12 +109,14 @@ public class Reward : MonoBehaviour
         }
         // 确保最终位置精确
         transform.position = originalPosition;
+        coroutine = null;
     }
 
     private void OnPlayerDied()
     {
         isFollowing = false;
-        StartCoroutine(ReturnToOriginalPosition());
+        StopAllCoroutines(); // 确保协程停止
+        coroutine = StartCoroutine(ReturnToOriginalPosition());
     }
 }
 
