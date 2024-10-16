@@ -7,7 +7,7 @@ public class HatsuneController : MonoBehaviour
     public float maxSpeed = 10f;       // 最大速度
     public float directionSmoothTime = 0.5f;  // 方向切换的平滑时间
     public float speedSmoothTime = 0.5f;      // 速度变化的平滑时间
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Vector3 currentDirection = Vector3.zero; // 当前的运动方向
     private float currentSpeed = 0f;   // 当前的速度
     private Vector3 targetDirection = Vector3.zero;  // 目标的运动方向
@@ -17,7 +17,7 @@ public class HatsuneController : MonoBehaviour
     private float speedRefSpecial = 0f;
     private Vector3 directionRefVelocity = Vector3.zero;  // 用于 SmoothDamp 的方向参考速度
     private Vector3 directionRefSepcial = Vector3.zero; //用于为0的时候
-
+    public float gravityScale;
     //头发动画机
     public Animator leftHair;
     public Animator rightHair;
@@ -119,6 +119,8 @@ public class HatsuneController : MonoBehaviour
      public void OnDeath()
     {
         GameManager.Instance.deathCount++;
+        gravityScale = rb.gravityScale;
+        rb.gravityScale=0f;
         canMove = false;
         rb.velocity = Vector3.zero;
         currentDirection = Vector3.zero;

@@ -20,12 +20,14 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void OnEnable()
     {
-        EventManager.Instance.AddEvent("Death", OnDeath);
+        //EventManager.Instance.AddEvent("Death", OnDeath);
     }
 
     public void OnDeath()
     {
         player.transform.position = currentSavePoint;
-        player.GetComponent<HatsuneController>().canMove = true;
+        HatsuneController hatsune =player.GetComponent<HatsuneController>();
+        hatsune.canMove = true;
+        hatsune.rb.gravityScale = hatsune.gravityScale;
     }
 }
