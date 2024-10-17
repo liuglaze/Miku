@@ -4211,7 +4211,7 @@ MonoBehaviour:
   directionSmoothTime: 0.03
   speedSmoothTime: 0.1
   rb: {fileID: 0}
-  gravityScale: 0
+  gravityScale: 2
   leftHair: {fileID: 757562790}
   rightHair: {fileID: 944659455}
   canMove: 1
@@ -5136,7 +5136,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1

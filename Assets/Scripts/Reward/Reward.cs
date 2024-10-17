@@ -12,6 +12,7 @@ public class Reward : MonoBehaviour
     private int totalRewards; // 当前跟随的草莓总数
     public CollectionGuid collectionGuid;
     private Coroutine coroutine;
+    private Vector3 velocity = Vector3.zero;
     private void Awake()
     {
         collectionGuid = GetComponent<CollectionGuid>();
@@ -64,7 +65,7 @@ public class Reward : MonoBehaviour
             // 启动跟随协程
         }
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (isFollowing && followTarget != null)
         {
@@ -80,21 +81,17 @@ public class Reward : MonoBehaviour
     }
     private void FollowTarget()
     {
-        // 计算草莓与跟随目标的圆周排列位置
-        float angleStep = 360f / totalRewards; // 每个草莓的角度间隔
-        float angle = rewardIndex * angleStep; // 当前草莓的角度
-
-        // 将角度转换为弧度
+        float angleStep = 360f / totalRewards;
+        float angle = rewardIndex * angleStep;
         float radian = angle * Mathf.Deg2Rad;
 
-        // 计算目标位置，基于角度的极坐标转换为笛卡尔坐标
         Vector3 targetPosition = followTarget.position + new Vector3(
             Mathf.Cos(radian) * followDistance,
             Mathf.Sin(radian) * followDistance,
             0);
 
-        // 使用 Lerp 平滑移动到目标位置
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); // 5f 是插值速度，可以根据需求调整
+        // 使用 SmoothDamp 代替 Lerp
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 0.3f); // 0.3f 是平滑时间
     }
 
 

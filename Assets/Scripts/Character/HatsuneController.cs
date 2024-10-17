@@ -37,7 +37,7 @@ public class HatsuneController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!canMove)
         {

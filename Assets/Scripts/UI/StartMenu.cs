@@ -76,6 +76,7 @@ public class StartMenu : Singleton<StartMenu>
         AudioManager.Instance.StopPlayMenuBGM();
         GameManager.Instance.loadData=true;
         SceneLoader.Instance.LoadGameScene(DataManager.Instance.currentContinueData.currentDifficulty);
+        AudioManager.Instance.PlayRandomBackgroundMusic();
     }
     private void OnRankClicked()
     {
