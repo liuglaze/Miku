@@ -28,6 +28,6 @@ public class SavePointManager : Singleton<SavePointManager>
         player.transform.position = currentSavePoint;
         HatsuneController hatsune =player.GetComponent<HatsuneController>();
         hatsune.canMove = true;
-        hatsune.rb.gravityScale = hatsune.gravityScale;
+        hatsune.rb.gravityScale = 2f;
     }
 }

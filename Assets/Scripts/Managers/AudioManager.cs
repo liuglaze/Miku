@@ -4,34 +4,34 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }  // µ¥ÀıÄ£Ê½
+    public static AudioManager Instance { get; private set; }  // å•ä¾‹æ¨¡å¼
 
-    public AudioClip[] soundEffects;  // ÒôĞ§¿â
+    public AudioClip[] soundEffects;  // éŸ³æ•ˆåº“
     public AudioClip[] deathSoundEffects;
-    public AudioClip[] backgroundMusic;  // ±³¾°ÒôÀÖ¿â
-    private AudioSource audioSource;  // ²¥·ÅÒôĞ§µÄ×é¼ş
-    private AudioSource bgMusicSource;  // ²¥·Å±³¾°ÒôÀÖµÄ×é¼ş
-    private AudioSource loopAudioSource;  // ×¨ÃÅÓÃÓÚÑ­»·²¥·ÅÒôÆµµÄ AudioSource
+    public AudioClip[] backgroundMusic;  // èƒŒæ™¯éŸ³ä¹åº“
+    private AudioSource audioSource;  // æ’­æ”¾éŸ³æ•ˆçš„ç»„ä»¶
+    private AudioSource bgMusicSource;  // æ’­æ”¾èƒŒæ™¯éŸ³ä¹çš„ç»„ä»¶
+    private AudioSource loopAudioSource;  // ä¸“é—¨ç”¨äºå¾ªç¯æ’­æ”¾éŸ³é¢‘çš„ AudioSource
     public AudioMixer mixer;
-    private Coroutine bgMusicCoroutine;  // ¿ØÖÆ±³¾°ÒôÀÖµÄĞ­³Ì
+    private Coroutine bgMusicCoroutine;  // æ§åˆ¶èƒŒæ™¯éŸ³ä¹çš„åç¨‹
     public AudioClip menuBGM;
 
 
     private void Awake()
     {
-        // È·±£µ¥ÀıÄ£Ê½
+        // ç¡®ä¿å•ä¾‹æ¨¡å¼
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject);  // Èç¹ûÊµÀıÒÑ´æÔÚ£¬Ïú»Ùµ±Ç°¶ÔÏó
+            Destroy(gameObject);  // å¦‚æœå®ä¾‹å·²å­˜åœ¨ï¼Œé”€æ¯å½“å‰å¯¹è±¡
         }
         AudioSource[] audioSources = GetComponents<AudioSource>();
-        audioSource = audioSources[0];  // µÚÒ»¸ö AudioSource
-        bgMusicSource = audioSources[1];  // µÚ¶ş¸ö AudioSource                        
-        loopAudioSource = gameObject.AddComponent<AudioSource>();// ¶¯Ì¬Ìí¼ÓÒ»¸öĞÂµÄ AudioSource£¬ÓÃÓÚÑ­»·ÒôÆµ
+        audioSource = audioSources[0];  // ç¬¬ä¸€ä¸ª AudioSource
+        bgMusicSource = audioSources[1];  // ç¬¬äºŒä¸ª AudioSource                        
+        loopAudioSource = gameObject.AddComponent<AudioSource>();// åŠ¨æ€æ·»åŠ ä¸€ä¸ªæ–°çš„ AudioSourceï¼Œç”¨äºå¾ªç¯éŸ³é¢‘
         DontDestroyOnLoad(this);
     }
 
@@ -39,21 +39,21 @@ public class AudioManager : MonoBehaviour
     {
         
 
-        //PlayRandomBackgroundMusic();  // Æô¶¯±³¾°ÒôÀÖ²¥·Å
+        //PlayRandomBackgroundMusic();  // å¯åŠ¨èƒŒæ™¯éŸ³ä¹æ’­æ”¾
     }
-    #region ÒôĞ§ºÍbgmµÄ²¥·Å
+    #region éŸ³æ•ˆå’Œbgmçš„æ’­æ”¾
 
     public void PlayMenuBGM()
     {
-        bgMusicSource.clip = menuBGM;  // ÉèÖÃ±³¾°ÒôÀÖ
-        bgMusicSource.loop = true;  // ²»Ñ­»·£¬²¥·ÅÍêÒ»Ê×»»ÏÂÒ»Ê×
-        bgMusicSource.Play();  // ²¥·Å±³¾°ÒôÀÖ
+        bgMusicSource.clip = menuBGM;  // è®¾ç½®èƒŒæ™¯éŸ³ä¹
+        bgMusicSource.loop = true;  // ä¸å¾ªç¯ï¼Œæ’­æ”¾å®Œä¸€é¦–æ¢ä¸‹ä¸€é¦–
+        bgMusicSource.Play();  // æ’­æ”¾èƒŒæ™¯éŸ³ä¹
     }
     public void StopPlayMenuBGM()
     {
-        bgMusicSource.clip = null;  // ÉèÖÃ±³¾°ÒôÀÖ
-        bgMusicSource.loop = false;  // ²»Ñ­»·£¬²¥·ÅÍêÒ»Ê×»»ÏÂÒ»Ê×
-        bgMusicSource.Stop();  // ²¥·Å±³¾°ÒôÀÖ
+        bgMusicSource.clip = null;  // è®¾ç½®èƒŒæ™¯éŸ³ä¹
+        bgMusicSource.loop = false;  // ä¸å¾ªç¯ï¼Œæ’­æ”¾å®Œä¸€é¦–æ¢ä¸‹ä¸€é¦–
+        bgMusicSource.Stop();  // æ’­æ”¾èƒŒæ™¯éŸ³ä¹
     }
     public void PlayLoopingAudioClip(AudioClip clip, float volume)
     {
@@ -63,18 +63,18 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // ÉèÖÃ¶ÀÁ¢µÄ loopAudioSource ÓÃÓÚÑ­»·²¥·Å
-        loopAudioSource.clip = clip;    // ÉèÖÃÒôÆµ¼ô¼­
-        loopAudioSource.volume = 1f; // ÉèÖÃÒôÁ¿
-        loopAudioSource.loop = true;    // ÉèÖÃÎªÑ­»·²¥·Å
-        loopAudioSource.Play();         // ²¥·ÅÒôÆµ
+        // è®¾ç½®ç‹¬ç«‹çš„ loopAudioSource ç”¨äºå¾ªç¯æ’­æ”¾
+        loopAudioSource.clip = clip;    // è®¾ç½®éŸ³é¢‘å‰ªè¾‘
+        loopAudioSource.volume = 1f; // è®¾ç½®éŸ³é‡
+        loopAudioSource.loop = true;    // è®¾ç½®ä¸ºå¾ªç¯æ’­æ”¾
+        loopAudioSource.Play();         // æ’­æ”¾éŸ³é¢‘
     }
     public void StopLoopingAudioClip()
     {
         if (loopAudioSource.isPlaying)
         {
-            loopAudioSource.Stop();   // Í£Ö¹Ñ­»·²¥·Å
-            loopAudioSource.clip = null;  // Çå¿ÕÒôÆµ¼ô¼­
+            loopAudioSource.Stop();   // åœæ­¢å¾ªç¯æ’­æ”¾
+            loopAudioSource.clip = null;  // æ¸…ç©ºéŸ³é¢‘å‰ªè¾‘
         }
     }
     public void PlayRandomSound()
@@ -85,10 +85,10 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        int randomIndex = Random.Range(0, soundEffects.Length);  // Ëæ»úÑ¡ÔñÒôĞ§
-        AudioClip clip = soundEffects[randomIndex];  // »ñÈ¡Ëæ»úÒôĞ§
+        int randomIndex = Random.Range(0, soundEffects.Length);  // éšæœºé€‰æ‹©éŸ³æ•ˆ
+        AudioClip clip = soundEffects[randomIndex];  // è·å–éšæœºéŸ³æ•ˆ
 
-        audioSource.PlayOneShot(clip);  // ²¥·ÅÒôĞ§
+        audioSource.PlayOneShot(clip);  // æ’­æ”¾éŸ³æ•ˆ
     }
 
     public void PlayAudioClip(AudioClip clip,float volume)
@@ -104,29 +104,29 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Í£Ö¹ÒÑÓĞµÄĞ­³Ì£¬±ÜÃâ¶à¸öĞ­³ÌÍ¬Ê±ÔËĞĞ
+        // åœæ­¢å·²æœ‰çš„åç¨‹ï¼Œé¿å…å¤šä¸ªåç¨‹åŒæ—¶è¿è¡Œ
         if (bgMusicCoroutine != null)
         {
             StopCoroutine(bgMusicCoroutine);
         }
 
-        bgMusicCoroutine = StartCoroutine(PlayBackgroundMusicCoroutine());  // Æô¶¯ĞÂµÄ±³¾°ÒôÀÖĞ­³Ì
+        bgMusicCoroutine = StartCoroutine(PlayBackgroundMusicCoroutine());  // å¯åŠ¨æ–°çš„èƒŒæ™¯éŸ³ä¹åç¨‹
     }
     
     private IEnumerator PlayBackgroundMusicCoroutine()
     {
         while (true)
         {
-            int randomIndex = Random.Range(0, backgroundMusic.Length);  // Ëæ»úÑ¡Ôñ±³¾°ÒôÀÖ
-            AudioClip clip = backgroundMusic[randomIndex];  // »ñÈ¡Ëæ»ú±³¾°ÒôÀÖ
-            bgMusicSource.clip = clip;  // ÉèÖÃ±³¾°ÒôÀÖ
-            bgMusicSource.loop = false;  // ²»Ñ­»·£¬²¥·ÅÍêÒ»Ê×»»ÏÂÒ»Ê×
-            bgMusicSource.Play();  // ²¥·Å±³¾°ÒôÀÖ
+            int randomIndex = Random.Range(0, backgroundMusic.Length);  // éšæœºé€‰æ‹©èƒŒæ™¯éŸ³ä¹
+            AudioClip clip = backgroundMusic[randomIndex];  // è·å–éšæœºèƒŒæ™¯éŸ³ä¹
+            bgMusicSource.clip = clip;  // è®¾ç½®èƒŒæ™¯éŸ³ä¹
+            bgMusicSource.loop = false;  // ä¸å¾ªç¯ï¼Œæ’­æ”¾å®Œä¸€é¦–æ¢ä¸‹ä¸€é¦–
+            bgMusicSource.Play();  // æ’­æ”¾èƒŒæ™¯éŸ³ä¹
 
-            // µÈ´ıµ±Ç°ÒôÀÖ²¥·ÅÍê³É
+            // ç­‰å¾…å½“å‰éŸ³ä¹æ’­æ”¾å®Œæˆ
             yield return new WaitForSeconds(clip.length);
 
-            // Ëæ»ú²¥·ÅÏÂÒ»Ê×±³¾°ÒôÀÖ
+            // éšæœºæ’­æ”¾ä¸‹ä¸€é¦–èƒŒæ™¯éŸ³ä¹
         }
     }
 
@@ -134,9 +134,9 @@ public class AudioManager : MonoBehaviour
     {
         if (bgMusicSource.isPlaying)
         {
-            bgMusicSource.Pause();  // ÔİÍ£±³¾°ÒôÀÖ
+            bgMusicSource.Pause();  // æš‚åœèƒŒæ™¯éŸ³ä¹
 
-            // ÔİÍ£Ğ­³Ì
+            // æš‚åœåç¨‹
             if (bgMusicCoroutine != null)
             {
                 StopCoroutine(bgMusicCoroutine);
@@ -148,9 +148,9 @@ public class AudioManager : MonoBehaviour
     {
         if (!bgMusicSource.isPlaying && bgMusicSource.clip != null)
         {
-            bgMusicSource.UnPause();  // »Ö¸´±³¾°ÒôÀÖ
+            bgMusicSource.UnPause();  // æ¢å¤èƒŒæ™¯éŸ³ä¹
 
-            // ÖØĞÂÆô¶¯±³¾°ÒôÀÖĞ­³Ì
+            // é‡æ–°å¯åŠ¨èƒŒæ™¯éŸ³ä¹åç¨‹
             if (bgMusicCoroutine == null)
             {
                 bgMusicCoroutine = StartCoroutine(PlayBackgroundMusicCoroutine());
@@ -160,8 +160,8 @@ public class AudioManager : MonoBehaviour
 
     public void StopBackgroundMusic()
     {
-        bgMusicSource.Stop();  // Í£Ö¹±³¾°ÒôÀÖ
-        // Í£Ö¹Ğ­³Ì
+        bgMusicSource.Stop();  // åœæ­¢èƒŒæ™¯éŸ³ä¹
+        // åœæ­¢åç¨‹
         if (bgMusicCoroutine != null)
         {
             StopCoroutine(bgMusicCoroutine);
@@ -170,7 +170,7 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    #region ÒôÁ¿¿ØÖÆ
+    #region éŸ³é‡æ§åˆ¶
     public void ChangeMainVolume(float amount)
     {
         mixer.SetFloat("MasterVolume", amount * 100 - 80);
